@@ -1,0 +1,77 @@
+# Example: an environmental consultancy that applies for some calls itself,
+# bids for technical-assistance tenders, and advises clients (companies and
+# municipalities) on calls it cannot apply to directly.
+name: example-consultancy
+language: en
+
+who:
+  role: consultancy
+  summary: >
+    Twelve-person environmental and circular-economy consultancy based in
+    Bilbao (ES21). Delivers waste-prevention plans, life-cycle assessments,
+    circular-economy strategies and technical assistance for municipalities
+    and regional governments, and prepares funding applications for
+    industrial clients. Experienced as a LIFE project partner.
+  country: ES
+  regions: [ES21, ES22, ES13]
+  size: small
+  legal_form: SL
+
+looking_for:
+  kinds: [grant, tender]
+  routes: [apply, bid, partner, advise_clients]
+  notes: >
+    Technical-assistance and study tenders on waste, circular economy and
+    climate plans; LIFE and Interreg calls where we can be a partner; and
+    grants our industrial or municipal clients could win with our help
+    (advise_clients) — those are leads, not applications for us.
+  min_days_to_deadline: 10
+
+not_interested_in: >
+  Waste collection or treatment service contracts, construction works,
+  equipment supply, grants restricted to individuals.
+
+eligibility:
+  countries: [ES]
+  interreg_country: Spain
+  beneficiary_tokens: []        # empty: never flag BDNS calls indirect (we advise all kinds)
+
+keywords:
+  core:
+    weight: 4
+    terms: ["economia circular", "circular economy", "prevencion de residuos",
+            "waste prevention", "analisis de ciclo de vida", "life cycle assessment"]
+  strong:
+    weight: 2
+    cap: 10
+    terms: ["residuos", "ecodiseno", "ecodesign", "plan de accion por el clima",
+            "huella de carbono", "carbon footprint", "simbiosis industrial",
+            "asistencia tecnica"]
+  context:
+    weight: 1
+    cap: 3
+    terms: ["sostenibilidad", "sustainab", "medio ambiente", "climate"]
+  negative:
+    weight: -3
+    terms: ["recogida de residuos", "servicio de limpieza", "obras de", "suministro de contenedores"]
+
+cpv:
+  include: ["904", "905", "907", "713", "73", "79411"]
+  exclude: ["45", "34", "4461"]
+cnae:
+  include: ["70", "71", "74"]
+funders:
+  weight: 2
+  terms: ["life", "interreg", "ihobe", "miteco"]
+
+budget:
+  tender_sweet_min: 15000
+  tender_sweet_max: 300000
+  tender_max: 900000
+
+sources:
+  boost: {interreg: 1}
+
+report:
+  top: 50
+  deep_read: 12

@@ -1,0 +1,202 @@
+{
+ "totalResults": 4,
+ "pageNumber": 1,
+ "results": [
+  {
+   "reference": "50130830TOPICSen",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2026-09-D4-03",
+   "summary": "Advanced data platforms to integrate whole life carbon in building information tools, assessments, and certification (Built4People Partnership)",
+   "metadata": {
+    "es_SortDate": [
+     "2026-05-05T00:00:00.000+0000"
+    ],
+    "type": [
+     "1"
+    ],
+    "callIdentifier": [
+     "HORIZON-CL5-2026-09"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "callTitle": [
+     "BATTERIES and ENERGY"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "identifier": [
+     "HORIZON-CL5-2026-09-D4-03"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2026-09-15T00:00:00.000+0000"
+    ],
+    "startDate": [
+     "2026-05-05T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "status": [
+     "31094502"
+    ],
+    "title": [
+     "Advanced data platforms to integrate whole life carbon in building information tools, assessments, and certification (Built4People Partnership)"
+    ],
+    "typesOfAction": [
+     "HORIZON Innovation Actions"
+    ]
+   }
+  },
+  {
+   "reference": "50130252TOPICSen",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL5-2026-09-D4-08",
+   "summary": "Full-scale demonstration of heat upgrade solutions in industrial processes",
+   "metadata": {
+    "es_SortDate": [
+     "2026-05-05T00:00:00.000+0000"
+    ],
+    "type": [
+     "1"
+    ],
+    "callIdentifier": [
+     "HORIZON-CL5-2026-09"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "callTitle": [
+     "BATTERIES and ENERGY"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "identifier": [
+     "HORIZON-CL5-2026-09-D4-08"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2026-09-15T00:00:00.000+0000"
+    ],
+    "startDate": [
+     "2026-05-05T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "status": [
+     "31094502"
+    ],
+    "title": [
+     "Full-scale demonstration of heat upgrade solutions in industrial processes"
+    ],
+    "typesOfAction": [
+     "HORIZON Innovation Actions"
+    ]
+   }
+  },
+  {
+   "reference": "51176725TOPICSen",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-JU-CBE-2026-IAFlag-02",
+   "summary": "SSbD bio-based alternatives for fertilising and/or crop protection products",
+   "metadata": {
+    "es_SortDate": [
+     "2026-04-23T00:00:00.000+0000"
+    ],
+    "title": [
+     "SSbD bio-based alternatives for fertilising and/or crop protection products"
+    ],
+    "type": [
+     "1"
+    ],
+    "callIdentifier": [
+     "HORIZON-JU-CBE-2026"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "callTitle": [
+     "HORIZON-JU-CBE-2026"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "identifier": [
+     "HORIZON-JU-CBE-2026-IAFlag-02"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2026-09-22T00:00:00.000+0000"
+    ],
+    "typesOfAction": [
+     "HORIZON JU Innovation Actions"
+    ],
+    "startDate": [
+     "2026-04-23T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "status": [
+     "31094502"
+    ]
+   }
+  },
+  {
+   "reference": "51176647TOPICSen",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-JU-CBE-2026-IA-05",
+   "summary": "Films and coatings for circular packaging",
+   "metadata": {
+    "es_SortDate": [
+     "2026-04-23T00:00:00.000+0000"
+    ],
+    "title": [
+     "Films and coatings for circular packaging"
+    ],
+    "type": [
+     "1"
+    ],
+    "callIdentifier": [
+     "HORIZON-JU-CBE-2026"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "callTitle": [
+     "HORIZON-JU-CBE-2026"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "identifier": [
+     "HORIZON-JU-CBE-2026-IA-05"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2026-09-22T00:00:00.000+0000"
+    ],
+    "typesOfAction": [
+     "HORIZON JU Innovation Actions"
+    ],
+    "startDate": [
+     "2026-04-23T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "status": [
+     "31094502"
+    ]
+   }
+  }
+ ]
+}

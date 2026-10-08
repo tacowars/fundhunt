@@ -1,0 +1,701 @@
+{
+ "notices": [
+  {
+   "deadline-receipt-tender-date-lot": [
+    "2026-09-02+02:00",
+    "2026-09-02+02:00",
+    "2026-09-02+02:00",
+    "2026-09-02+02:00"
+   ],
+   "notice-type": "cn-standard",
+   "publication-number": "542832-2026",
+   "classification-cpv": [
+    "72220000",
+    "72220000",
+    "72220000",
+    "72220000",
+    "72220000"
+   ],
+   "contract-nature": [
+    "services",
+    "services",
+    "services",
+    "services",
+    "services"
+   ],
+   "publication-date": "2026-08-05+02:00",
+   "buyer-name": {
+    "spa": [
+     "Ayuntamiento de Getxo - Ayuntamiento de Getxo"
+    ]
+   },
+   "procedure-identifier": "9c4ae191-031d-4424-8f00-f68dd7ca4dcb",
+   "links": {
+    "xml": {
+     "MUL": "https://ted.europa.eu/en/notice/542832-2026/xml"
+    },
+    "pdf": {
+     "BUL": "https://ted.europa.eu/bg/notice/542832-2026/pdf",
+     "SPA": "https://ted.europa.eu/es/notice/542832-2026/pdf",
+     "CES": "https://ted.europa.eu/cs/notice/542832-2026/pdf",
+     "DAN": "https://ted.europa.eu/da/notice/542832-2026/pdf",
+     "DEU": "https://ted.europa.eu/de/notice/542832-2026/pdf",
+     "EST": "https://ted.europa.eu/et/notice/542832-2026/pdf",
+     "ELL": "https://ted.europa.eu/el/notice/542832-2026/pdf",
+     "ENG": "https://ted.europa.eu/en/notice/542832-2026/pdf",
+     "FRA": "https://ted.europa.eu/fr/notice/542832-2026/pdf",
+     "GLE": "https://ted.europa.eu/ga/notice/542832-2026/pdf",
+     "HRV": "https://ted.europa.eu/hr/notice/542832-2026/pdf",
+     "ITA": "https://ted.europa.eu/it/notice/542832-2026/pdf",
+     "LAV": "https://ted.europa.eu/lv/notice/542832-2026/pdf",
+     "LIT": "https://ted.europa.eu/lt/notice/542832-2026/pdf",
+     "HUN": "https://ted.europa.eu/hu/notice/542832-2026/pdf",
+     "MLT": "https://ted.europa.eu/mt/notice/542832-2026/pdf",
+     "NLD": "https://ted.europa.eu/nl/notice/542832-2026/pdf",
+     "POL": "https://ted.europa.eu/pl/notice/542832-2026/pdf",
+     "POR": "https://ted.europa.eu/pt/notice/542832-2026/pdf",
+     "RON": "https://ted.europa.eu/ro/notice/542832-2026/pdf",
+     "SLK": "https://ted.europa.eu/sk/notice/542832-2026/pdf",
+     "SLV": "https://ted.europa.eu/sl/notice/542832-2026/pdf",
+     "FIN": "https://ted.europa.eu/fi/notice/542832-2026/pdf",
+     "SWE": "https://ted.europa.eu/sv/notice/542832-2026/pdf"
+    },
+    "pdfs": {
+     "SPA": "https://ted.europa.eu/es/notice/542832-2026/pdfs"
+    },
+    "html": {
+     "BUL": "https://ted.europa.eu/bg/notice/-/detail/542832-2026",
+     "SPA": "https://ted.europa.eu/es/notice/-/detail/542832-2026",
+     "CES": "https://ted.europa.eu/cs/notice/-/detail/542832-2026",
+     "DAN": "https://ted.europa.eu/da/notice/-/detail/542832-2026",
+     "DEU": "https://ted.europa.eu/de/notice/-/detail/542832-2026",
+     "EST": "https://ted.europa.eu/et/notice/-/detail/542832-2026",
+     "ELL": "https://ted.europa.eu/el/notice/-/detail/542832-2026",
+     "ENG": "https://ted.europa.eu/en/notice/-/detail/542832-2026",
+     "FRA": "https://ted.europa.eu/fr/notice/-/detail/542832-2026",
+     "GLE": "https://ted.europa.eu/ga/notice/-/detail/542832-2026",
+     "HRV": "https://ted.europa.eu/hr/notice/-/detail/542832-2026",
+     "ITA": "https://ted.europa.eu/it/notice/-/detail/542832-2026",
+     "LAV": "https://ted.europa.eu/lv/notice/-/detail/542832-2026",
+     "LIT": "https://ted.europa.eu/lt/notice/-/detail/542832-2026",
+     "HUN": "https://ted.europa.eu/hu/notice/-/detail/542832-2026",
+     "MLT": "https://ted.europa.eu/mt/notice/-/detail/542832-2026",
+     "NLD": "https://ted.europa.eu/nl/notice/-/detail/542832-2026",
+     "POL": "https://ted.europa.eu/pl/notice/-/detail/542832-2026",
+     "POR": "https://ted.europa.eu/pt/notice/-/detail/542832-2026",
+     "RON": "https://ted.europa.eu/ro/notice/-/detail/542832-2026",
+     "SLK": "https://ted.europa.eu/sk/notice/-/detail/542832-2026",
+     "SLV": "https://ted.europa.eu/sl/notice/-/detail/542832-2026",
+     "FIN": "https://ted.europa.eu/fi/notice/-/detail/542832-2026",
+     "SWE": "https://ted.europa.eu/sv/notice/-/detail/542832-2026"
+    },
+    "htmlDirect": {
+     "BUL": "https://ted.europa.eu/bg/notice/542832-2026/html",
+     "SPA": "https://ted.europa.eu/es/notice/542832-2026/html",
+     "CES": "https://ted.europa.eu/cs/notice/542832-2026/html",
+     "DAN": "https://ted.europa.eu/da/notice/542832-2026/html",
+     "DEU": "https://ted.europa.eu/de/notice/542832-2026/html",
+     "EST": "https://ted.europa.eu/et/notice/542832-2026/html",
+     "ELL": "https://ted.europa.eu/el/notice/542832-2026/html",
+     "ENG": "https://ted.europa.eu/en/notice/542832-2026/html",
+     "FRA": "https://ted.europa.eu/fr/notice/542832-2026/html",
+     "GLE": "https://ted.europa.eu/ga/notice/542832-2026/html",
+     "HRV": "https://ted.europa.eu/hr/notice/542832-2026/html",
+     "ITA": "https://ted.europa.eu/it/notice/542832-2026/html",
+     "LAV": "https://ted.europa.eu/lv/notice/542832-2026/html",
+     "LIT": "https://ted.europa.eu/lt/notice/542832-2026/html",
+     "HUN": "https://ted.europa.eu/hu/notice/542832-2026/html",
+     "MLT": "https://ted.europa.eu/mt/notice/542832-2026/html",
+     "NLD": "https://ted.europa.eu/nl/notice/542832-2026/html",
+     "POL": "https://ted.europa.eu/pl/notice/542832-2026/html",
+     "POR": "https://ted.europa.eu/pt/notice/542832-2026/html",
+     "RON": "https://ted.europa.eu/ro/notice/542832-2026/html",
+     "SLK": "https://ted.europa.eu/sk/notice/542832-2026/html",
+     "SLV": "https://ted.europa.eu/sl/notice/542832-2026/html",
+     "FIN": "https://ted.europa.eu/fi/notice/542832-2026/html",
+     "SWE": "https://ted.europa.eu/sv/notice/542832-2026/html"
+    }
+   },
+   "notice-title": {
+    "hun": "Spanyolország – Rendszer- és műszaki tanácsadó szolgáltatások – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "lav": "Spānija – Sistēmu un tehnisko konsultāciju pakalpojumi – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "swe": "Spanien – Systemtjänster och tekniska konsulttjänster – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "gle": "An Spáinn – Systems and technical consultancy services – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "ell": "Ισπανία – Υπηρεσίες παροχής συμβουλών για συστήματα και τεχνικά θέματα – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "spa": "España – Servicios de consultoría en sistemas y consultoría técnica – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "est": "Hispaania – Süsteemialased ja tehnilised nõustamisteenused – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "nld": "Spanje – Systeem- en technisch advies – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "fin": "Espanja – Järjestelmiä ja tekniikkaa koskevat konsulttipalvelut – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "pol": "Hiszpania – Usługi doradcze w zakresie systemów i doradztwo techniczne – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "hrv": "Španjolska – Usluge sistemskog i tehničkog savjetovanja – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "ces": "Španělsko – Systémové a technické poradenské služby – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "dan": "Spanien – Konsulentvirksomhed i forbindelse med systemer og teknik – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "ron": "Spania – Servicii de consultanţă privind sistemele informatice şi servicii de consultanţă tehnică – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "por": "Espanha – Serviços de consultoria técnica e em matéria de sistemas – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "slk": "Španielsko – Systémové a technické poradenstvo – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "fra": "Espagne – Services de conseil en systèmes informatiques et conseils techniques – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "mlt": "Spanja – Servizzi dwar is-sistemi ta' konsulenza teknika speċjali – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "deu": "Spanien – Systemberatung und technische Beratung – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "lit": "Ispanija – Sistemų ir techninės konsultacinės paslaugos – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "ita": "Spagna – Servizi di consulenza in sistemi informatici e assistenza tecnica – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "bul": "Иcпaния – Системни и технически консултантски услуги – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "slv": "Španija – Storitve sistemskega in tehničnega svetovanja – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo",
+    "eng": "Spain – Systems and technical consultancy services – Servicio de asistencia tecnologica y apoyo tecnico especializado para el ayuntamiento de getxo"
+   },
+   "buyer-country": [
+    "ESP"
+   ]
+  },
+  {
+   "deadline-receipt-tender-date-lot": [
+    "2026-08-20+02:00"
+   ],
+   "notice-type": "cn-standard",
+   "publication-number": "543323-2026",
+   "classification-cpv": [
+    "72000000",
+    "72000000"
+   ],
+   "contract-nature": [
+    "services",
+    "services"
+   ],
+   "publication-date": "2026-08-05+02:00",
+   "buyer-name": {
+    "spa": [
+     "Sociedad Andaluza para el Desarrollo de las Telecomunicaciones, S.A."
+    ]
+   },
+   "procedure-identifier": "6b3e4472-6d30-4acb-9741-643d90a3221a",
+   "links": {
+    "xml": {
+     "MUL": "https://ted.europa.eu/en/notice/543323-2026/xml"
+    },
+    "pdf": {
+     "BUL": "https://ted.europa.eu/bg/notice/543323-2026/pdf",
+     "SPA": "https://ted.europa.eu/es/notice/543323-2026/pdf",
+     "CES": "https://ted.europa.eu/cs/notice/543323-2026/pdf",
+     "DAN": "https://ted.europa.eu/da/notice/543323-2026/pdf",
+     "DEU": "https://ted.europa.eu/de/notice/543323-2026/pdf",
+     "EST": "https://ted.europa.eu/et/notice/543323-2026/pdf",
+     "ELL": "https://ted.europa.eu/el/notice/543323-2026/pdf",
+     "ENG": "https://ted.europa.eu/en/notice/543323-2026/pdf",
+     "FRA": "https://ted.europa.eu/fr/notice/543323-2026/pdf",
+     "GLE": "https://ted.europa.eu/ga/notice/543323-2026/pdf",
+     "HRV": "https://ted.europa.eu/hr/notice/543323-2026/pdf",
+     "ITA": "https://ted.europa.eu/it/notice/543323-2026/pdf",
+     "LAV": "https://ted.europa.eu/lv/notice/543323-2026/pdf",
+     "LIT": "https://ted.europa.eu/lt/notice/543323-2026/pdf",
+     "HUN": "https://ted.europa.eu/hu/notice/543323-2026/pdf",
+     "MLT": "https://ted.europa.eu/mt/notice/543323-2026/pdf",
+     "NLD": "https://ted.europa.eu/nl/notice/543323-2026/pdf",
+     "POL": "https://ted.europa.eu/pl/notice/543323-2026/pdf",
+     "POR": "https://ted.europa.eu/pt/notice/543323-2026/pdf",
+     "RON": "https://ted.europa.eu/ro/notice/543323-2026/pdf",
+     "SLK": "https://ted.europa.eu/sk/notice/543323-2026/pdf",
+     "SLV": "https://ted.europa.eu/sl/notice/543323-2026/pdf",
+     "FIN": "https://ted.europa.eu/fi/notice/543323-2026/pdf",
+     "SWE": "https://ted.europa.eu/sv/notice/543323-2026/pdf"
+    },
+    "pdfs": {
+     "SPA": "https://ted.europa.eu/es/notice/543323-2026/pdfs"
+    },
+    "html": {
+     "BUL": "https://ted.europa.eu/bg/notice/-/detail/543323-2026",
+     "SPA": "https://ted.europa.eu/es/notice/-/detail/543323-2026",
+     "CES": "https://ted.europa.eu/cs/notice/-/detail/543323-2026",
+     "DAN": "https://ted.europa.eu/da/notice/-/detail/543323-2026",
+     "DEU": "https://ted.europa.eu/de/notice/-/detail/543323-2026",
+     "EST": "https://ted.europa.eu/et/notice/-/detail/543323-2026",
+     "ELL": "https://ted.europa.eu/el/notice/-/detail/543323-2026",
+     "ENG": "https://ted.europa.eu/en/notice/-/detail/543323-2026",
+     "FRA": "https://ted.europa.eu/fr/notice/-/detail/543323-2026",
+     "GLE": "https://ted.europa.eu/ga/notice/-/detail/543323-2026",
+     "HRV": "https://ted.europa.eu/hr/notice/-/detail/543323-2026",
+     "ITA": "https://ted.europa.eu/it/notice/-/detail/543323-2026",
+     "LAV": "https://ted.europa.eu/lv/notice/-/detail/543323-2026",
+     "LIT": "https://ted.europa.eu/lt/notice/-/detail/543323-2026",
+     "HUN": "https://ted.europa.eu/hu/notice/-/detail/543323-2026",
+     "MLT": "https://ted.europa.eu/mt/notice/-/detail/543323-2026",
+     "NLD": "https://ted.europa.eu/nl/notice/-/detail/543323-2026",
+     "POL": "https://ted.europa.eu/pl/notice/-/detail/543323-2026",
+     "POR": "https://ted.europa.eu/pt/notice/-/detail/543323-2026",
+     "RON": "https://ted.europa.eu/ro/notice/-/detail/543323-2026",
+     "SLK": "https://ted.europa.eu/sk/notice/-/detail/543323-2026",
+     "SLV": "https://ted.europa.eu/sl/notice/-/detail/543323-2026",
+     "FIN": "https://ted.europa.eu/fi/notice/-/detail/543323-2026",
+     "SWE": "https://ted.europa.eu/sv/notice/-/detail/543323-2026"
+    },
+    "htmlDirect": {
+     "BUL": "https://ted.europa.eu/bg/notice/543323-2026/html",
+     "SPA": "https://ted.europa.eu/es/notice/543323-2026/html",
+     "CES": "https://ted.europa.eu/cs/notice/543323-2026/html",
+     "DAN": "https://ted.europa.eu/da/notice/543323-2026/html",
+     "DEU": "https://ted.europa.eu/de/notice/543323-2026/html",
+     "EST": "https://ted.europa.eu/et/notice/543323-2026/html",
+     "ELL": "https://ted.europa.eu/el/notice/543323-2026/html",
+     "ENG": "https://ted.europa.eu/en/notice/543323-2026/html",
+     "FRA": "https://ted.europa.eu/fr/notice/543323-2026/html",
+     "GLE": "https://ted.europa.eu/ga/notice/543323-2026/html",
+     "HRV": "https://ted.europa.eu/hr/notice/543323-2026/html",
+     "ITA": "https://ted.europa.eu/it/notice/543323-2026/html",
+     "LAV": "https://ted.europa.eu/lv/notice/543323-2026/html",
+     "LIT": "https://ted.europa.eu/lt/notice/543323-2026/html",
+     "HUN": "https://ted.europa.eu/hu/notice/543323-2026/html",
+     "MLT": "https://ted.europa.eu/mt/notice/543323-2026/html",
+     "NLD": "https://ted.europa.eu/nl/notice/543323-2026/html",
+     "POL": "https://ted.europa.eu/pl/notice/543323-2026/html",
+     "POR": "https://ted.europa.eu/pt/notice/543323-2026/html",
+     "RON": "https://ted.europa.eu/ro/notice/543323-2026/html",
+     "SLK": "https://ted.europa.eu/sk/notice/543323-2026/html",
+     "SLV": "https://ted.europa.eu/sl/notice/543323-2026/html",
+     "FIN": "https://ted.europa.eu/fi/notice/543323-2026/html",
+     "SWE": "https://ted.europa.eu/sv/notice/543323-2026/html"
+    }
+   },
+   "notice-title": {
+    "hun": "Spanyolország – IT-szolgáltatások: tanácsadás, szoftverfejlesztés, internet és támogatás – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "lav": "Spānija – IT pakalpojumi konsultēšana, programmatūras izstrāde, internets un atbalsts – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "swe": "Spanien – IT-tjänster: konsultverksamhet, programvaruutveckling, Internet och stöd – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "gle": "An Spáinn – IT services: consulting, software development, Internet and support – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "ell": "Ισπανία – Υπηρεσίες τεχνολογίας των πληροφοριών: παροχή συμβουλών, ανάπτυξη λογισμικού, Διαδίκτυο και υποστήριξη – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "spa": "España – Servicios TI: consultoría, desarrollo de software, Internet y apoyo – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "est": "Hispaania – IT-teenused: nõuande-, tarkvaraarendus-, Interneti- ja tugiteenused – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "nld": "Spanje – IT-diensten: adviezen, softwareontwikkeling, internet en ondersteuning – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "fin": "Espanja – Tietotekniset palvelut: neuvonta, ohjelmistojen kehittäminen, Internet ja tuki – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "pol": "Hiszpania – Usługi informatyczne: konsultacyjne, opracowywania oprogramowania, internetowe i wsparcia – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "hrv": "Španjolska – Usluge informacijske tehnologije: savjetovanje, razvoj programske podrške, internet i podrška – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "ces": "Španělsko – Informační technologie: poradenství, vývoj programového vybavení, internet a podpora – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "dan": "Spanien – It-tjenester: rådgivning, programmeludvikling, internet og support – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "ron": "Spania – Servicii IT: consultanţă, dezvoltare de software, internet şi asistenţă – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "por": "Espanha – Serviços de TI: consultoria, desenvolvimento de software, Internet e apoio – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "slk": "Španielsko – Služby informačných technológií: konzultácie, vývoj softvéru, internet a podpora – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "fra": "Espagne – Services de technologies de l'information, conseil, développement de logiciels, internet et appui – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "mlt": "Spanja – Servizzi ta' IT: konsulenza, żvilupp ta' softwer, Internet u appoġġ – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "deu": "Spanien – IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "lit": "Ispanija – IT paslaugos: konsultavimas, programinės įrangos kūrimas, internetas ir aptarnavimo paslaugos – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "ita": "Spagna – Servizi informatici: consulenza, sviluppo di software, Internet e supporto – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "bul": "Иcпaния – ИТ услуги: консултации, разработване на софтуер, Интернет и поддръжка – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "slv": "Španija – Storitve informacijske tehnologije: svetovanje, razvoj programske opreme, internet in podpora – Implementación y Mantenimiento del CMS y Sitio Web Noticias",
+    "eng": "Spain – IT services: consulting, software development, Internet and support – Implementación y Mantenimiento del CMS y Sitio Web Noticias"
+   },
+   "buyer-country": [
+    "ESP"
+   ]
+  },
+  {
+   "deadline-receipt-tender-date-lot": [
+    "2026-09-07+02:00"
+   ],
+   "notice-type": "cn-standard",
+   "publication-number": "543516-2026",
+   "classification-cpv": [
+    "72000000",
+    "72268000",
+    "72000000",
+    "72268000"
+   ],
+   "contract-nature": [
+    "services",
+    "services"
+   ],
+   "publication-date": "2026-08-05+02:00",
+   "buyer-name": {
+    "spa": [
+     "Presidencia de la Autoridad Portuaria de Motril"
+    ]
+   },
+   "procedure-identifier": "c8cf0238-97a2-4ab9-bf44-3eb75bc4724c",
+   "links": {
+    "xml": {
+     "MUL": "https://ted.europa.eu/en/notice/543516-2026/xml"
+    },
+    "pdf": {
+     "BUL": "https://ted.europa.eu/bg/notice/543516-2026/pdf",
+     "SPA": "https://ted.europa.eu/es/notice/543516-2026/pdf",
+     "CES": "https://ted.europa.eu/cs/notice/543516-2026/pdf",
+     "DAN": "https://ted.europa.eu/da/notice/543516-2026/pdf",
+     "DEU": "https://ted.europa.eu/de/notice/543516-2026/pdf",
+     "EST": "https://ted.europa.eu/et/notice/543516-2026/pdf",
+     "ELL": "https://ted.europa.eu/el/notice/543516-2026/pdf",
+     "ENG": "https://ted.europa.eu/en/notice/543516-2026/pdf",
+     "FRA": "https://ted.europa.eu/fr/notice/543516-2026/pdf",
+     "GLE": "https://ted.europa.eu/ga/notice/543516-2026/pdf",
+     "HRV": "https://ted.europa.eu/hr/notice/543516-2026/pdf",
+     "ITA": "https://ted.europa.eu/it/notice/543516-2026/pdf",
+     "LAV": "https://ted.europa.eu/lv/notice/543516-2026/pdf",
+     "LIT": "https://ted.europa.eu/lt/notice/543516-2026/pdf",
+     "HUN": "https://ted.europa.eu/hu/notice/543516-2026/pdf",
+     "MLT": "https://ted.europa.eu/mt/notice/543516-2026/pdf",
+     "NLD": "https://ted.europa.eu/nl/notice/543516-2026/pdf",
+     "POL": "https://ted.europa.eu/pl/notice/543516-2026/pdf",
+     "POR": "https://ted.europa.eu/pt/notice/543516-2026/pdf",
+     "RON": "https://ted.europa.eu/ro/notice/543516-2026/pdf",
+     "SLK": "https://ted.europa.eu/sk/notice/543516-2026/pdf",
+     "SLV": "https://ted.europa.eu/sl/notice/543516-2026/pdf",
+     "FIN": "https://ted.europa.eu/fi/notice/543516-2026/pdf",
+     "SWE": "https://ted.europa.eu/sv/notice/543516-2026/pdf"
+    },
+    "pdfs": {
+     "SPA": "https://ted.europa.eu/es/notice/543516-2026/pdfs"
+    },
+    "html": {
+     "BUL": "https://ted.europa.eu/bg/notice/-/detail/543516-2026",
+     "SPA": "https://ted.europa.eu/es/notice/-/detail/543516-2026",
+     "CES": "https://ted.europa.eu/cs/notice/-/detail/543516-2026",
+     "DAN": "https://ted.europa.eu/da/notice/-/detail/543516-2026",
+     "DEU": "https://ted.europa.eu/de/notice/-/detail/543516-2026",
+     "EST": "https://ted.europa.eu/et/notice/-/detail/543516-2026",
+     "ELL": "https://ted.europa.eu/el/notice/-/detail/543516-2026",
+     "ENG": "https://ted.europa.eu/en/notice/-/detail/543516-2026",
+     "FRA": "https://ted.europa.eu/fr/notice/-/detail/543516-2026",
+     "GLE": "https://ted.europa.eu/ga/notice/-/detail/543516-2026",
+     "HRV": "https://ted.europa.eu/hr/notice/-/detail/543516-2026",
+     "ITA": "https://ted.europa.eu/it/notice/-/detail/543516-2026",
+     "LAV": "https://ted.europa.eu/lv/notice/-/detail/543516-2026",
+     "LIT": "https://ted.europa.eu/lt/notice/-/detail/543516-2026",
+     "HUN": "https://ted.europa.eu/hu/notice/-/detail/543516-2026",
+     "MLT": "https://ted.europa.eu/mt/notice/-/detail/543516-2026",
+     "NLD": "https://ted.europa.eu/nl/notice/-/detail/543516-2026",
+     "POL": "https://ted.europa.eu/pl/notice/-/detail/543516-2026",
+     "POR": "https://ted.europa.eu/pt/notice/-/detail/543516-2026",
+     "RON": "https://ted.europa.eu/ro/notice/-/detail/543516-2026",
+     "SLK": "https://ted.europa.eu/sk/notice/-/detail/543516-2026",
+     "SLV": "https://ted.europa.eu/sl/notice/-/detail/543516-2026",
+     "FIN": "https://ted.europa.eu/fi/notice/-/detail/543516-2026",
+     "SWE": "https://ted.europa.eu/sv/notice/-/detail/543516-2026"
+    },
+    "htmlDirect": {
+     "BUL": "https://ted.europa.eu/bg/notice/543516-2026/html",
+     "SPA": "https://ted.europa.eu/es/notice/543516-2026/html",
+     "CES": "https://ted.europa.eu/cs/notice/543516-2026/html",
+     "DAN": "https://ted.europa.eu/da/notice/543516-2026/html",
+     "DEU": "https://ted.europa.eu/de/notice/543516-2026/html",
+     "EST": "https://ted.europa.eu/et/notice/543516-2026/html",
+     "ELL": "https://ted.europa.eu/el/notice/543516-2026/html",
+     "ENG": "https://ted.europa.eu/en/notice/543516-2026/html",
+     "FRA": "https://ted.europa.eu/fr/notice/543516-2026/html",
+     "GLE": "https://ted.europa.eu/ga/notice/543516-2026/html",
+     "HRV": "https://ted.europa.eu/hr/notice/543516-2026/html",
+     "ITA": "https://ted.europa.eu/it/notice/543516-2026/html",
+     "LAV": "https://ted.europa.eu/lv/notice/543516-2026/html",
+     "LIT": "https://ted.europa.eu/lt/notice/543516-2026/html",
+     "HUN": "https://ted.europa.eu/hu/notice/543516-2026/html",
+     "MLT": "https://ted.europa.eu/mt/notice/543516-2026/html",
+     "NLD": "https://ted.europa.eu/nl/notice/543516-2026/html",
+     "POL": "https://ted.europa.eu/pl/notice/543516-2026/html",
+     "POR": "https://ted.europa.eu/pt/notice/543516-2026/html",
+     "RON": "https://ted.europa.eu/ro/notice/543516-2026/html",
+     "SLK": "https://ted.europa.eu/sk/notice/543516-2026/html",
+     "SLV": "https://ted.europa.eu/sl/notice/543516-2026/html",
+     "FIN": "https://ted.europa.eu/fi/notice/543516-2026/html",
+     "SWE": "https://ted.europa.eu/sv/notice/543516-2026/html"
+    }
+   },
+   "notice-title": {
+    "hun": "Spanyolország – IT-szolgáltatások: tanácsadás, szoftverfejlesztés, internet és támogatás – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "lav": "Spānija – IT pakalpojumi konsultēšana, programmatūras izstrāde, internets un atbalsts – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "swe": "Spanien – IT-tjänster: konsultverksamhet, programvaruutveckling, Internet och stöd – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "gle": "An Spáinn – IT services: consulting, software development, Internet and support – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "ell": "Ισπανία – Υπηρεσίες τεχνολογίας των πληροφοριών: παροχή συμβουλών, ανάπτυξη λογισμικού, Διαδίκτυο και υποστήριξη – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "spa": "España – Servicios TI: consultoría, desarrollo de software, Internet y apoyo – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "est": "Hispaania – IT-teenused: nõuande-, tarkvaraarendus-, Interneti- ja tugiteenused – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "nld": "Spanje – IT-diensten: adviezen, softwareontwikkeling, internet en ondersteuning – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "fin": "Espanja – Tietotekniset palvelut: neuvonta, ohjelmistojen kehittäminen, Internet ja tuki – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "pol": "Hiszpania – Usługi informatyczne: konsultacyjne, opracowywania oprogramowania, internetowe i wsparcia – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "hrv": "Španjolska – Usluge informacijske tehnologije: savjetovanje, razvoj programske podrške, internet i podrška – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "ces": "Španělsko – Informační technologie: poradenství, vývoj programového vybavení, internet a podpora – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "dan": "Spanien – It-tjenester: rådgivning, programmeludvikling, internet og support – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "ron": "Spania – Servicii IT: consultanţă, dezvoltare de software, internet şi asistenţă – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "por": "Espanha – Serviços de TI: consultoria, desenvolvimento de software, Internet e apoio – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "slk": "Španielsko – Služby informačných technológií: konzultácie, vývoj softvéru, internet a podpora – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "fra": "Espagne – Services de technologies de l'information, conseil, développement de logiciels, internet et appui – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "mlt": "Spanja – Servizzi ta' IT: konsulenza, żvilupp ta' softwer, Internet u appoġġ – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "deu": "Spanien – IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "lit": "Ispanija – IT paslaugos: konsultavimas, programinės įrangos kūrimas, internetas ir aptarnavimo paslaugos – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "ita": "Spagna – Servizi informatici: consulenza, sviluppo di software, Internet e supporto – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "bul": "Иcпaния – ИТ услуги: консултации, разработване на софтуер, Интернет и поддръжка – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "slv": "Španija – Storitve informacijske tehnologije: svetovanje, razvoj programske opreme, internet in podpora – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)",
+    "eng": "Spain – IT services: consulting, software development, Internet and support – Mejora del control de accesos y la seguridad de las mercancías destinadas al transporte ro-ro con terceros países. Puerto de Motril (Granada)"
+   },
+   "buyer-country": [
+    "ESP"
+   ]
+  },
+  {
+   "notice-type": "pin-rtl",
+   "publication-number": "542470-2026",
+   "classification-cpv": [
+    "72000000",
+    "72000000"
+   ],
+   "contract-nature": [
+    "services",
+    "services"
+   ],
+   "publication-date": "2026-08-05+02:00",
+   "buyer-name": {
+    "spa": [
+     "AGENCIA PARA LA COMPETITIVIDAD DE LA EMPRESA"
+    ]
+   },
+   "links": {
+    "xml": {
+     "MUL": "https://ted.europa.eu/en/notice/542470-2026/xml"
+    },
+    "pdf": {
+     "BUL": "https://ted.europa.eu/bg/notice/542470-2026/pdf",
+     "SPA": "https://ted.europa.eu/es/notice/542470-2026/pdf",
+     "CES": "https://ted.europa.eu/cs/notice/542470-2026/pdf",
+     "DAN": "https://ted.europa.eu/da/notice/542470-2026/pdf",
+     "DEU": "https://ted.europa.eu/de/notice/542470-2026/pdf",
+     "EST": "https://ted.europa.eu/et/notice/542470-2026/pdf",
+     "ELL": "https://ted.europa.eu/el/notice/542470-2026/pdf",
+     "ENG": "https://ted.europa.eu/en/notice/542470-2026/pdf",
+     "FRA": "https://ted.europa.eu/fr/notice/542470-2026/pdf",
+     "GLE": "https://ted.europa.eu/ga/notice/542470-2026/pdf",
+     "HRV": "https://ted.europa.eu/hr/notice/542470-2026/pdf",
+     "ITA": "https://ted.europa.eu/it/notice/542470-2026/pdf",
+     "LAV": "https://ted.europa.eu/lv/notice/542470-2026/pdf",
+     "LIT": "https://ted.europa.eu/lt/notice/542470-2026/pdf",
+     "HUN": "https://ted.europa.eu/hu/notice/542470-2026/pdf",
+     "MLT": "https://ted.europa.eu/mt/notice/542470-2026/pdf",
+     "NLD": "https://ted.europa.eu/nl/notice/542470-2026/pdf",
+     "POL": "https://ted.europa.eu/pl/notice/542470-2026/pdf",
+     "POR": "https://ted.europa.eu/pt/notice/542470-2026/pdf",
+     "RON": "https://ted.europa.eu/ro/notice/542470-2026/pdf",
+     "SLK": "https://ted.europa.eu/sk/notice/542470-2026/pdf",
+     "SLV": "https://ted.europa.eu/sl/notice/542470-2026/pdf",
+     "FIN": "https://ted.europa.eu/fi/notice/542470-2026/pdf",
+     "SWE": "https://ted.europa.eu/sv/notice/542470-2026/pdf"
+    },
+    "pdfs": {
+     "SPA": "https://ted.europa.eu/es/notice/542470-2026/pdfs"
+    },
+    "html": {
+     "BUL": "https://ted.europa.eu/bg/notice/-/detail/542470-2026",
+     "SPA": "https://ted.europa.eu/es/notice/-/detail/542470-2026",
+     "CES": "https://ted.europa.eu/cs/notice/-/detail/542470-2026",
+     "DAN": "https://ted.europa.eu/da/notice/-/detail/542470-2026",
+     "DEU": "https://ted.europa.eu/de/notice/-/detail/542470-2026",
+     "EST": "https://ted.europa.eu/et/notice/-/detail/542470-2026",
+     "ELL": "https://ted.europa.eu/el/notice/-/detail/542470-2026",
+     "ENG": "https://ted.europa.eu/en/notice/-/detail/542470-2026",
+     "FRA": "https://ted.europa.eu/fr/notice/-/detail/542470-2026",
+     "GLE": "https://ted.europa.eu/ga/notice/-/detail/542470-2026",
+     "HRV": "https://ted.europa.eu/hr/notice/-/detail/542470-2026",
+     "ITA": "https://ted.europa.eu/it/notice/-/detail/542470-2026",
+     "LAV": "https://ted.europa.eu/lv/notice/-/detail/542470-2026",
+     "LIT": "https://ted.europa.eu/lt/notice/-/detail/542470-2026",
+     "HUN": "https://ted.europa.eu/hu/notice/-/detail/542470-2026",
+     "MLT": "https://ted.europa.eu/mt/notice/-/detail/542470-2026",
+     "NLD": "https://ted.europa.eu/nl/notice/-/detail/542470-2026",
+     "POL": "https://ted.europa.eu/pl/notice/-/detail/542470-2026",
+     "POR": "https://ted.europa.eu/pt/notice/-/detail/542470-2026",
+     "RON": "https://ted.europa.eu/ro/notice/-/detail/542470-2026",
+     "SLK": "https://ted.europa.eu/sk/notice/-/detail/542470-2026",
+     "SLV": "https://ted.europa.eu/sl/notice/-/detail/542470-2026",
+     "FIN": "https://ted.europa.eu/fi/notice/-/detail/542470-2026",
+     "SWE": "https://ted.europa.eu/sv/notice/-/detail/542470-2026"
+    },
+    "htmlDirect": {
+     "BUL": "https://ted.europa.eu/bg/notice/542470-2026/html",
+     "SPA": "https://ted.europa.eu/es/notice/542470-2026/html",
+     "CES": "https://ted.europa.eu/cs/notice/542470-2026/html",
+     "DAN": "https://ted.europa.eu/da/notice/542470-2026/html",
+     "DEU": "https://ted.europa.eu/de/notice/542470-2026/html",
+     "EST": "https://ted.europa.eu/et/notice/542470-2026/html",
+     "ELL": "https://ted.europa.eu/el/notice/542470-2026/html",
+     "ENG": "https://ted.europa.eu/en/notice/542470-2026/html",
+     "FRA": "https://ted.europa.eu/fr/notice/542470-2026/html",
+     "GLE": "https://ted.europa.eu/ga/notice/542470-2026/html",
+     "HRV": "https://ted.europa.eu/hr/notice/542470-2026/html",
+     "ITA": "https://ted.europa.eu/it/notice/542470-2026/html",
+     "LAV": "https://ted.europa.eu/lv/notice/542470-2026/html",
+     "LIT": "https://ted.europa.eu/lt/notice/542470-2026/html",
+     "HUN": "https://ted.europa.eu/hu/notice/542470-2026/html",
+     "MLT": "https://ted.europa.eu/mt/notice/542470-2026/html",
+     "NLD": "https://ted.europa.eu/nl/notice/542470-2026/html",
+     "POL": "https://ted.europa.eu/pl/notice/542470-2026/html",
+     "POR": "https://ted.europa.eu/pt/notice/542470-2026/html",
+     "RON": "https://ted.europa.eu/ro/notice/542470-2026/html",
+     "SLK": "https://ted.europa.eu/sk/notice/542470-2026/html",
+     "SLV": "https://ted.europa.eu/sl/notice/542470-2026/html",
+     "FIN": "https://ted.europa.eu/fi/notice/542470-2026/html",
+     "SWE": "https://ted.europa.eu/sv/notice/542470-2026/html"
+    }
+   },
+   "notice-title": {
+    "hun": "Spanyolország – IT-szolgáltatások: tanácsadás, szoftverfejlesztés, internet és támogatás – Servicios IT",
+    "lav": "Spānija – IT pakalpojumi konsultēšana, programmatūras izstrāde, internets un atbalsts – Servicios IT",
+    "swe": "Spanien – IT-tjänster: konsultverksamhet, programvaruutveckling, Internet och stöd – Servicios IT",
+    "gle": "An Spáinn – IT services: consulting, software development, Internet and support – Servicios IT",
+    "ell": "Ισπανία – Υπηρεσίες τεχνολογίας των πληροφοριών: παροχή συμβουλών, ανάπτυξη λογισμικού, Διαδίκτυο και υποστήριξη – Servicios IT",
+    "spa": "España – Servicios TI: consultoría, desarrollo de software, Internet y apoyo – Servicios IT",
+    "est": "Hispaania – IT-teenused: nõuande-, tarkvaraarendus-, Interneti- ja tugiteenused – Servicios IT",
+    "nld": "Spanje – IT-diensten: adviezen, softwareontwikkeling, internet en ondersteuning – Servicios IT",
+    "fin": "Espanja – Tietotekniset palvelut: neuvonta, ohjelmistojen kehittäminen, Internet ja tuki – Servicios IT",
+    "pol": "Hiszpania – Usługi informatyczne: konsultacyjne, opracowywania oprogramowania, internetowe i wsparcia – Servicios IT",
+    "hrv": "Španjolska – Usluge informacijske tehnologije: savjetovanje, razvoj programske podrške, internet i podrška – Servicios IT",
+    "ces": "Španělsko – Informační technologie: poradenství, vývoj programového vybavení, internet a podpora – Servicios IT",
+    "dan": "Spanien – It-tjenester: rådgivning, programmeludvikling, internet og support – Servicios IT",
+    "ron": "Spania – Servicii IT: consultanţă, dezvoltare de software, internet şi asistenţă – Servicios IT",
+    "por": "Espanha – Serviços de TI: consultoria, desenvolvimento de software, Internet e apoio – Servicios IT",
+    "slk": "Španielsko – Služby informačných technológií: konzultácie, vývoj softvéru, internet a podpora – Servicios IT",
+    "fra": "Espagne – Services de technologies de l'information, conseil, développement de logiciels, internet et appui – Servicios IT",
+    "mlt": "Spanja – Servizzi ta' IT: konsulenza, żvilupp ta' softwer, Internet u appoġġ – Servicios IT",
+    "deu": "Spanien – IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung – Servicios IT",
+    "lit": "Ispanija – IT paslaugos: konsultavimas, programinės įrangos kūrimas, internetas ir aptarnavimo paslaugos – Servicios IT",
+    "ita": "Spagna – Servizi informatici: consulenza, sviluppo di software, Internet e supporto – Servicios IT",
+    "bul": "Иcпaния – ИТ услуги: консултации, разработване на софтуер, Интернет и поддръжка – Servicios IT",
+    "slv": "Španija – Storitve informacijske tehnologije: svetovanje, razvoj programske opreme, internet in podpora – Servicios IT",
+    "eng": "Spain – IT services: consulting, software development, Internet and support – Servicios IT"
+   },
+   "buyer-country": [
+    "ESP"
+   ]
+  },
+  {
+   "notice-type": "can-standard",
+   "publication-number": "543570-2026",
+   "classification-cpv": [
+    "34928470",
+    "30231320",
+    "34928471",
+    "72263000",
+    "34928470",
+    "30231320",
+    "34928471",
+    "72263000"
+   ],
+   "contract-nature": [
+    "supplies",
+    "supplies"
+   ],
+   "publication-date": "2026-08-05+02:00",
+   "buyer-name": {
+    "spa": [
+     "Junta de Gobierno del Ayuntamiento de Cádiz"
+    ]
+   },
+   "procedure-identifier": "5c2a5085-961c-493f-9f5c-d744d3691b93",
+   "links": {
+    "xml": {
+     "MUL": "https://ted.europa.eu/en/notice/543570-2026/xml"
+    },
+    "pdf": {
+     "BUL": "https://ted.europa.eu/bg/notice/543570-2026/pdf",
+     "SPA": "https://ted.europa.eu/es/notice/543570-2026/pdf",
+     "CES": "https://ted.europa.eu/cs/notice/543570-2026/pdf",
+     "DAN": "https://ted.europa.eu/da/notice/543570-2026/pdf",
+     "DEU": "https://ted.europa.eu/de/notice/543570-2026/pdf",
+     "EST": "https://ted.europa.eu/et/notice/543570-2026/pdf",
+     "ELL": "https://ted.europa.eu/el/notice/543570-2026/pdf",
+     "ENG": "https://ted.europa.eu/en/notice/543570-2026/pdf",
+     "FRA": "https://ted.europa.eu/fr/notice/543570-2026/pdf",
+     "GLE": "https://ted.europa.eu/ga/notice/543570-2026/pdf",
+     "HRV": "https://ted.europa.eu/hr/notice/543570-2026/pdf",
+     "ITA": "https://ted.europa.eu/it/notice/543570-2026/pdf",
+     "LAV": "https://ted.europa.eu/lv/notice/543570-2026/pdf",
+     "LIT": "https://ted.europa.eu/lt/notice/543570-2026/pdf",
+     "HUN": "https://ted.europa.eu/hu/notice/543570-2026/pdf",
+     "MLT": "https://ted.europa.eu/mt/notice/543570-2026/pdf",
+     "NLD": "https://ted.europa.eu/nl/notice/543570-2026/pdf",
+     "POL": "https://ted.europa.eu/pl/notice/543570-2026/pdf",
+     "POR": "https://ted.europa.eu/pt/notice/543570-2026/pdf",
+     "RON": "https://ted.europa.eu/ro/notice/543570-2026/pdf",
+     "SLK": "https://ted.europa.eu/sk/notice/543570-2026/pdf",
+     "SLV": "https://ted.europa.eu/sl/notice/543570-2026/pdf",
+     "FIN": "https://ted.europa.eu/fi/notice/543570-2026/pdf",
+     "SWE": "https://ted.europa.eu/sv/notice/543570-2026/pdf"
+    },
+    "pdfs": {
+     "SPA": "https://ted.europa.eu/es/notice/543570-2026/pdfs"
+    },
+    "html": {
+     "BUL": "https://ted.europa.eu/bg/notice/-/detail/543570-2026",
+     "SPA": "https://ted.europa.eu/es/notice/-/detail/543570-2026",
+     "CES": "https://ted.europa.eu/cs/notice/-/detail/543570-2026",
+     "DAN": "https://ted.europa.eu/da/notice/-/detail/543570-2026",
+     "DEU": "https://ted.europa.eu/de/notice/-/detail/543570-2026",
+     "EST": "https://ted.europa.eu/et/notice/-/detail/543570-2026",
+     "ELL": "https://ted.europa.eu/el/notice/-/detail/543570-2026",
+     "ENG": "https://ted.europa.eu/en/notice/-/detail/543570-2026",
+     "FRA": "https://ted.europa.eu/fr/notice/-/detail/543570-2026",
+     "GLE": "https://ted.europa.eu/ga/notice/-/detail/543570-2026",
+     "HRV": "https://ted.europa.eu/hr/notice/-/detail/543570-2026",
+     "ITA": "https://ted.europa.eu/it/notice/-/detail/543570-2026",
+     "LAV": "https://ted.europa.eu/lv/notice/-/detail/543570-2026",
+     "LIT": "https://ted.europa.eu/lt/notice/-/detail/543570-2026",
+     "HUN": "https://ted.europa.eu/hu/notice/-/detail/543570-2026",
+     "MLT": "https://ted.europa.eu/mt/notice/-/detail/543570-2026",
+     "NLD": "https://ted.europa.eu/nl/notice/-/detail/543570-2026",
+     "POL": "https://ted.europa.eu/pl/notice/-/detail/543570-2026",
+     "POR": "https://ted.europa.eu/pt/notice/-/detail/543570-2026",
+     "RON": "https://ted.europa.eu/ro/notice/-/detail/543570-2026",
+     "SLK": "https://ted.europa.eu/sk/notice/-/detail/543570-2026",
+     "SLV": "https://ted.europa.eu/sl/notice/-/detail/543570-2026",
+     "FIN": "https://ted.europa.eu/fi/notice/-/detail/543570-2026",
+     "SWE": "https://ted.europa.eu/sv/notice/-/detail/543570-2026"
+    },
+    "htmlDirect": {
+     "BUL": "https://ted.europa.eu/bg/notice/543570-2026/html",
+     "SPA": "https://ted.europa.eu/es/notice/543570-2026/html",
+     "CES": "https://ted.europa.eu/cs/notice/543570-2026/html",
+     "DAN": "https://ted.europa.eu/da/notice/543570-2026/html",
+     "DEU": "https://ted.europa.eu/de/notice/543570-2026/html",
+     "EST": "https://ted.europa.eu/et/notice/543570-2026/html",
+     "ELL": "https://ted.europa.eu/el/notice/543570-2026/html",
+     "ENG": "https://ted.europa.eu/en/notice/543570-2026/html",
+     "FRA": "https://ted.europa.eu/fr/notice/543570-2026/html",
+     "GLE": "https://ted.europa.eu/ga/notice/543570-2026/html",
+     "HRV": "https://ted.europa.eu/hr/notice/543570-2026/html",
+     "ITA": "https://ted.europa.eu/it/notice/543570-2026/html",
+     "LAV": "https://ted.europa.eu/lv/notice/543570-2026/html",
+     "LIT": "https://ted.europa.eu/lt/notice/543570-2026/html",
+     "HUN": "https://ted.europa.eu/hu/notice/543570-2026/html",
+     "MLT": "https://ted.europa.eu/mt/notice/543570-2026/html",
+     "NLD": "https://ted.europa.eu/nl/notice/543570-2026/html",
+     "POL": "https://ted.europa.eu/pl/notice/543570-2026/html",
+     "POR": "https://ted.europa.eu/pt/notice/543570-2026/html",
+     "RON": "https://ted.europa.eu/ro/notice/543570-2026/html",
+     "SLK": "https://ted.europa.eu/sk/notice/543570-2026/html",
+     "SLV": "https://ted.europa.eu/sl/notice/543570-2026/html",
+     "FIN": "https://ted.europa.eu/fi/notice/543570-2026/html",
+     "SWE": "https://ted.europa.eu/sv/notice/543570-2026/html"
+    }
+   },
+   "notice-title": {
+    "hun": "Spanyolország – Jelzések – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "lav": "Spānija – Zīmes – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "swe": "Spanien – Skyltning – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "gle": "An Spáinn – Signage – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "ell": "Ισπανία – Σήματα – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "spa": "España – Señalización – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "est": "Hispaania – Märgid ja sildid – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "nld": "Spanje – Signaleringsborden – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "fin": "Espanja – Merkit ja kilvet – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "pol": "Hiszpania – Elementy oznakowania – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "hrv": "Španjolska – Oznake – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "ces": "Španělsko – Značení – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "dan": "Spanien – Skiltning – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "ron": "Spania – Săgeţi indicatoare – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "por": "Espanha – Sinalização – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "slk": "Španielsko – Značenie – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "fra": "Espagne – Fléchage – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "mlt": "Spanja – Sinjalaġġ – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "deu": "Spanien – Beschilderung – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "lit": "Ispanija – Ženklai – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "ita": "Spagna – Segnaletica – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "bul": "Иcпaния – Пътни указателни табели – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "slv": "Španija – Oznake – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)",
+    "eng": "Spain – Signage – Producción y fabricación, suministro e instalación de un sistema de señalización turística inteligente en la Ciudad de Cádiz dentro del Plan \"Cádiz, hacia un modelo de turismo sostenible 2023-2025\" en el marco del Plan de Recuperación, Transformación y Resiliencia - financiado por la Unión Europea – NextGenerationEU (C14.I1.2.)"
+   },
+   "buyer-country": [
+    "ESP"
+   ]
+  }
+ ],
+ "totalNoticeCount": 351,
+ "timedOut": false
+}

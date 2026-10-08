@@ -1,0 +1,3 @@
+#!/bin/bash
+# Installed by `git config core.hooksPath scripts/hooks` (scripts/setup-dev.sh).
+exec bash "$(git rev-parse --show-toplevel)/scripts/privacy-check.sh" staged

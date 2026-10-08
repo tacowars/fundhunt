@@ -1,0 +1,81 @@
+# Example: a small software company looking for R&D/digitalisation grants
+# and IT tenders it can deliver itself. Copy to profiles/<your-name>.yaml,
+# change `name`, and rewrite everything below — see profiles/README.md.
+name: example-sme
+language: es            # report and agent summaries: es | en
+
+who:
+  role: company         # company | consultancy | public_body | ngo | research | individual
+  summary: >
+    Pyme tecnológica de 25 personas con sede en Valencia (ES52). Desarrolla
+    software de visión artificial y mantenimiento predictivo para la
+    industria manufacturera y agroalimentaria. Ha participado en un proyecto
+    CDTI y en un consorcio Horizon Europe como socio tecnológico. Puede
+    liderar proyectos de I+D de hasta ~1 M€ y licitaciones de desarrollo de
+    software o analítica de datos de hasta ~500 k€.
+  country: ES
+  regions: [ES52]       # NUTS prefixes you are based in / prefer (optional)
+  size: small           # micro | small | medium | large | n/a
+  legal_form: SL
+
+looking_for:
+  kinds: [grant, tender]                 # grant = subvenciones/ayudas, tender = licitaciones
+  routes: [apply, bid, partner]          # apply | bid | partner | advise_clients | monitor
+  notes: >
+    Ayudas de I+D+i y digitalización para empresas (CDTI, Agencia Valenciana
+    de la Innovación, Horizon Europe Cluster 4, Digital Europe), licitaciones
+    de desarrollo de software, IA o analítica, y consorcios europeos donde
+    encajemos como socio tecnológico.
+  min_days_to_deadline: 7
+
+not_interested_in: >
+  Obras, suministro de hardware o mantenimiento de equipos, formación sin
+  componente tecnológico, ayudas solo para autónomos o para el sector
+  público, contratos de licencias de software de terceros.
+
+eligibility:
+  countries: [ES]               # records from other countries are dropped (EU-wide pass)
+  interreg_country: Spain       # Interreg calls must list this country as eligible
+  beneficiary_tokens: [PYME, EMPRESA, "PERSONAS JURIDICAS"]   # BDNS: else flagged indirect
+
+keywords:                       # accent-folded substring match; terms may be prefixes
+  core:                         # your thesis — one hit puts a record in tier A
+    weight: 4
+    terms: ["vision artificial", "computer vision", "mantenimiento predictivo",
+            "predictive maintenance", "inteligencia artificial", "industria 4.0"]
+  strong:                       # adjacent niches — two hits (or one + a code match) = tier B
+    weight: 2
+    cap: 10
+    terms: ["machine learning", "aprendizaje automatico", "analitica de datos",
+            "data analytics", "gemelo digital", "digital twin", "edge computing",
+            "agroalimentari", "manufactur"]
+  context:                      # weak context, capped low
+    weight: 1
+    cap: 3
+    terms: ["digitalizacion", "digitalisation", "i+d", "innovacion", "software"]
+  negative:                     # never-a-fit markers (title/summary/funder only)
+    weight: -3
+    terms: ["obras de", "suministro de mobiliario", "limpieza", "vigilancia y seguridad",
+            "concesion directa a", "subvencion nominativa"]
+
+cpv:                            # tenders: CPV prefixes you can bid / must avoid
+  include: ["722", "723", "724", "48"]
+  exclude: ["45", "30", "50"]
+cnae:                           # BDNS sector codes
+  include: ["62", "63", "72"]
+funders:                        # programme / funder substrings worth a bonus
+  weight: 2
+  terms: ["cdti", "agencia valenciana de la innovacion", "horizon", "digital europe"]
+
+budget:                         # tenders only; grant budgets are call totals
+  tender_sweet_min: 40000
+  tender_sweet_max: 500000
+  tender_max: 1500000
+
+sources:
+  disabled: [epah]              # sources irrelevant to you
+  boost: {sedia_cascade: 2}     # cascade calls suit small teams
+
+report:
+  top: 40                       # candidates the agent judges per run
+  deep_read: 10                 # of those, how many get their documents read

@@ -1,0 +1,67 @@
+# Example: a town council (ayuntamiento) looking for grants it can apply to.
+# A public body is the *buyer* in tenders, so tenders are switched off.
+name: example-ayuntamiento
+language: es
+
+who:
+  role: public_body
+  summary: >
+    Ayuntamiento de un municipio de unos 18.000 habitantes en la provincia
+    de Granada (ES614), con un pequeño equipo técnico. Busca financiación
+    para eficiencia energética de edificios municipales, movilidad
+    sostenible, rehabilitación de vivienda, pobreza energética,
+    digitalización de servicios y reto demográfico.
+  country: ES
+  regions: [ES61]
+  size: n/a
+  legal_form: entidad local
+
+looking_for:
+  kinds: [grant]
+  routes: [apply, partner]
+  notes: >
+    Convocatorias abiertas a entidades locales: fondos europeos (FEDER,
+    Next Generation), IDAE, Junta de Andalucía, Diputación, EPAH y
+    programas europeos con socios municipales (LIFE, Interreg, URBACT).
+  min_days_to_deadline: 15
+
+not_interested_in: >
+  Ayudas dirigidas solo a empresas, autónomos o particulares; premios;
+  subvenciones nominativas a entidades concretas.
+
+eligibility:
+  countries: [ES]
+  interreg_country: Spain
+  beneficiary_tokens: ["ENTIDADES LOCALES", "AYUNTAMIENTO", "ADMINISTRACION", "SECTOR PUBLICO",
+                       "PERSONAS JURIDICAS QUE NO DESARROLLAN"]
+
+keywords:
+  core:
+    weight: 4
+    terms: ["entidades locales", "municipios", "ayuntamientos", "local authorities",
+            "pobreza energetica", "energy poverty"]
+  strong:
+    weight: 2
+    cap: 10
+    terms: ["eficiencia energetica", "energy efficiency", "rehabilitacion", "movilidad sostenible",
+            "reto demografico", "autoconsumo", "comunidades energeticas", "alumbrado publico"]
+  context:
+    weight: 1
+    cap: 3
+    terms: ["sostenib", "edificios publicos", "digitalizacion"]
+  negative:
+    weight: -3
+    terms: ["concesion directa a", "subvencion nominativa", "premio", "autonomos"]
+
+cnae: {include: []}
+funders:
+  weight: 2
+  terms: ["idae", "junta de andalucia", "diputacion de granada", "feder", "epah"]
+
+sources:
+  disabled: [ted, placsp]       # tenders are bought, not bid, by a council
+  boost: {epah: 2}
+
+report:
+  top: 40
+  deep_read: 10

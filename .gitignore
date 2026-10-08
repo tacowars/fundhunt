@@ -1,0 +1,21 @@
+# local data: database, reports, downloaded documents
+/data/
+
+# your profiles are personal; only the shipped examples are tracked
+/profiles/*
+!/profiles/README.md
+!/profiles/example-*.yaml
+
+# private word list for scripts/privacy-check.sh
+/.privacy-words
+.env
+
+# python / tooling
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+.DS_Store

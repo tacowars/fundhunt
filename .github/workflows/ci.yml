@@ -1,0 +1,17 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run pytest -q
+      - run: uv run fundhunt profile check example-sme
+      # identity + email scan of every tracked file (the private word list is
+      # local-only and not available here)
+      - run: bash scripts/privacy-check.sh tree
