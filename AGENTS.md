@@ -7,8 +7,8 @@ that follows the AGENTS.md convention.
 
 The user wants funding or tender opportunities, not code. Load and follow
 the skill **`skills/fundhunt/SKILL.md`**; read it in full before doing
-anything else. It is also linked as `.claude/skills/fundhunt` and
-`.agents/skills/fundhunt` for agents that discover skills there.
+anything else. Pointer files at `.claude/skills/fundhunt` and
+`.agents/skills/fundhunt` lead agents that discover skills there to it.
 
 - **Never change code for normal use.** The CLI (`uv run fundhunt …`)
   covers setup, sync, ranking, document reading, verdicts and reports.

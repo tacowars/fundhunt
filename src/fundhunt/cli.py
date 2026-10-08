@@ -27,7 +27,7 @@ from pathlib import Path
 
 from . import __version__, documents, pipeline, rank, report, snapshot
 from . import profile as profile_mod
-from .settings import db_path
+from .settings import data_dir, db_path
 from .sources import DESCRIPTIONS, SOURCES
 from .store import Store
 
@@ -202,7 +202,18 @@ def cmd_run(a) -> int:
     return 0
 
 
+def _utf8_stdio() -> None:
+    # Windows consoles and pipes default to a legacy code page, which can't
+    # print every accented title; the JSON contract is UTF-8 everywhere
+    for stream in (sys.stdin, sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
+
+
 def main(argv: list[str] | None = None) -> int:
+    _utf8_stdio()
+    # where agents write JSON for --file (skill: "Passing JSON to a command")
+    (data_dir() / "tmp").mkdir(parents=True, exist_ok=True)
     ap = argparse.ArgumentParser(prog="fundhunt", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", action="version", version=__version__)

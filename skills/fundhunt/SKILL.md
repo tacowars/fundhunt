@@ -1,6 +1,6 @@
 ---
 name: fundhunt
-description: Find EU and Spanish grants, aid (subvenciones, ayudas) and public tenders (licitaciones) that fit a user's profile, judge them, and open an HTML results page. Use when the user asks to set up fundhunt, create or edit a funding profile, run or refresh fundhunt, review funding/tender candidates, import their review decisions, or schedule source syncs.
+description: Find EU and Spanish grants, aid (subvenciones, ayudas) and public tenders (licitaciones) that fit a user's profile, judge them, and open an HTML results page. Use when the user asks to set up fundhunt, create or edit a funding profile, run or refresh fundhunt, review funding/tender candidates, import their review decisions, schedule source syncs, or install or update fundhunt.
 ---
 
 # fundhunt
@@ -16,10 +16,18 @@ stderr. Run everything from the repository root:
 uv run fundhunt <command>
 ```
 
-If `uv` is missing, ask the user to install it
-(https://docs.astral.sh/uv/getting-started/installation/), or install it
-yourself if they agree. Nothing else needs installing: `uv run` builds the
-environment on first use.
+The commands are the same in PowerShell, cmd and bash. If `uv` is
+missing, follow "For the assistant doing the install" in `README.md`:
+ask, then install it yourself. Nothing else needs installing, because
+`uv run` builds the environment on first use.
+
+**Most users are not technical.** Talk to them in their language and in
+plain words. Don't show commands, JSON or file paths unless they ask.
+Do the steps yourself and tell them what you found.
+
+**Passing JSON to a command.** Never pipe it through a shell heredoc,
+since PowerShell has none. Write the text to a file under `data/tmp/`
+with your file-writing tool, then pass that file's path.
 
 The division of labour: the CLI handles acquisition, storage, lexical
 ranking, document text extraction and the report. **You** handle the
@@ -34,6 +42,7 @@ judgment: whether a call fits this applicant, by which route, and why.
 | "import my decisions", they mention or attach the exported file, or paste a block starting `FUNDHUNT-DECISIONS` | **B**, step 1 only, then offer a run |
 | "the results are off", "too much X" | **C. Tune** |
 | "keep it updated", "schedule it" | **D. Schedule** |
+| "update fundhunt", "get the latest version" | **E. Update** |
 
 Start every session with `uv run fundhunt status`. It shows the profiles,
 the last complete sync per source and recent failures.
@@ -83,12 +92,9 @@ advise. All of them share one database.
    applied, e.g. "3 dismissed, 2 marked pursue, 1 note".
    - **A pasted block** starting with `FUNDHUNT-DECISIONS`, from the
      page's **Copy for agent** button. This is the normal route in cloud,
-     web and mobile sessions. Pipe it verbatim:
-     ```bash
-     uv run fundhunt decisions import --profile <name> --stdin <<'EOF'
-     <the pasted block, exactly as given>
-     EOF
-     ```
+     web and mobile sessions. Save the block exactly as given to
+     `data/tmp/pasted-decisions.txt`, then run
+     `uv run fundhunt decisions import --profile <name> data/tmp/pasted-decisions.txt`.
    - **An attached file** (`fundhunt-decisions-<profile>-<date>.json`):
      pass its path, `uv run fundhunt decisions import --profile <name> <path>`.
    - **Nothing given:** run `uv run fundhunt decisions import --profile <name>`.
@@ -134,12 +140,12 @@ advise. All of them share one database.
    verdict with `fit`, `key_constraints`, `next_step` and
    `deep_read: true`.
 7. **Save** your verdicts, in batches of about 10 as you go so that
-   nothing is lost if the session ends:
-   ```bash
-   uv run fundhunt verdict --profile <name> <<'EOF'
+   nothing is lost if the session ends. Write the batch as a JSON array
+   to `data/tmp/verdicts.json`:
+   ```json
    [ {"ref": "bdns:812345", "verdict": "strong", "route": "apply", ...}, ... ]
-   EOF
    ```
+   Then run `uv run fundhunt verdict --profile <name> --file data/tmp/verdicts.json`.
    Fix every entry the result lists under `errors`, then save again.
 8. **Report.** Run `uv run fundhunt report --profile <name> --open`. It
    writes `data/reports/<name>-latest.html`, one self-contained file.
@@ -197,6 +203,19 @@ user's platform scheduler, running from the repo root:
 - Windows: Task Scheduler.
 
 Ask before installing anything.
+
+## E. Update
+
+1. Find out how this copy was installed: a `.git` folder means a clone.
+2. **A clone:** run `git pull`.
+3. **A zip download:** download
+   `https://github.com/tacowars/fundhunt/archive/refs/heads/main.zip`
+   and extract the contents of its `fundhunt-main/` folder over this
+   folder, replacing files. The zip holds no user files, so the user's
+   profiles and `data/` are kept.
+4. Run `uv run fundhunt status` to confirm everything still works, then
+   tell the user in a sentence what changed. The newest entries in
+   `docs/log/` and `docs/adr/` say.
 
 ## Rules
 
