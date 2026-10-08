@@ -20,7 +20,7 @@ anything else. It is also linked as `.claude/skills/fundhunt` and
 ## If you are here to DEVELOP fundhunt
 
 - Layout:
-  - `src/fundhunt/`: the CLI (`cli.py`) and its modules (sync, store,
+  - `src/fundhunt/`: the CLI (`cli.py`) and its modules (sync, snapshot, store,
     rank, documents, report).
   - `src/fundhunt/sources/`: one adapter per source.
   - `skills/fundhunt/`: the agent workflow.

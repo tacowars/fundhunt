@@ -53,10 +53,14 @@ OpenAI Codex, Cowork or similar) does the rest.
 You can keep as many profiles as you like, e.g. your firm plus each
 client you advise. They share one database.
 
-The **first sync** downloads the currently open stock and takes about
-30 minutes, most of it spent on Spanish grants (BDNS). BDNS fetches each
-call one by one, politely, so its backlog finishes over the next two or
-three syncs. Later syncs only fetch what changed: a few minutes.
+**Syncing takes seconds.** A public job rebuilds the data from every
+source each night and publishes it as a
+[snapshot](https://github.com/tacowars/fundhunt/releases/tag/snapshot)
+of a few megabytes. Your copy downloads that instead of crawling the
+registries itself, which also keeps the load on the public sources to
+one visit a day. If the snapshot is missing or out of date, fundhunt
+fetches from the sources directly. A first direct sync takes about 30
+minutes, and later ones a few minutes.
 
 ## What it covers
 

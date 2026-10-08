@@ -1,0 +1,66 @@
+name: snapshot
+# Nightly corpus snapshot (decision `nightly-corpus-snapshot`): continue from
+# the previous snapshot, sync every source directly, publish the lean result
+# as the assets of the `snapshot` release. Users' agents download it instead
+# of crawling the registries themselves.
+on:
+  schedule:
+    - cron: "17 3 * * *"   # early morning in Spain, after the registries' overnight batches
+  workflow_dispatch:
+  push:
+    branches: [nightly-snapshot]   # trial runs before merge; remove when merging
+
+permissions:
+  contents: write   # create the release and replace its assets
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Continue from the previous snapshot
+        run: uv run fundhunt snapshot pull || echo "no previous snapshot; this run does a full first sync"
+
+      - name: Sync every source directly
+        id: sync
+        continue-on-error: true   # publish what arrived; the failure is reported below
+        env:
+          # no profiles: every source is wanted and TED is fetched for Spain
+          FUNDHUNT_PROFILES: ${{ runner.temp }}/no-profiles
+        run: uv run fundhunt sync --direct | tee sync.json
+
+      - name: Build
+        run: uv run fundhunt snapshot build --out dist
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view snapshot >/dev/null 2>&1 || gh release create snapshot \
+            --title "Nightly data snapshot" --latest=false \
+            --notes "Public records from the fundhunt sources, rebuilt every night. fundhunt downloads this by itself; you don't need to."
+          # the database first, the manifest last: a reader that sees the new
+          # manifest early just fails the checksum and retries later
+          gh release upload snapshot dist/fundhunt-snapshot.db.gz --clobber
+          gh release upload snapshot dist/fundhunt-snapshot.json --clobber
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### Sync'; echo '```json'; cat sync.json 2>/dev/null; echo '```'
+            echo '### Snapshot'; echo '```json'; cat dist/fundhunt-snapshot.json 2>/dev/null; echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail if a source failed
+        if: steps.sync.outcome == 'failure'
+        run: |
+          echo "::error::at least one source failed to sync; the snapshot was still published"
+          exit 1

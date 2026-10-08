@@ -15,9 +15,11 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 from . import profile as profile_mod
+from . import snapshot
 from .models import Opportunity, lifecycle
 from .profile import Profile
 from .rank import TIER_LABELS, crossref, dupkey
+from .settings import snapshot_url
 from .sources import SOURCES, SyncContext, registry
 from .store import Store, split_ref
 
@@ -49,8 +51,25 @@ def _wanted_sources(profiles: list[Profile]) -> set[str]:
             and SOURCE_KIND.get(s, "grant") in p.looking_for.kinds}
 
 
+def _pull_snapshot(store: Store, log) -> dict:
+    if not snapshot_url():
+        return {"ok": True, "status": "disabled"}
+    log("[snapshot] checking the nightly snapshot")
+    try:
+        res = snapshot.pull(store)
+    except Exception as exc:
+        # never fatal: the sources are synced directly instead
+        res = {"ok": True, "status": "unavailable", "error": f"{type(exc).__name__}: {exc}"[:300]}
+    log(f"[snapshot] {res}")
+    return res
+
+
 def sync(store: Store, only: list[str] | None = None, force: bool = False,
+         direct: bool = False,
          log=lambda msg: print(msg, file=sys.stderr, flush=True)) -> dict:
+    """Bring the corpus up to date. By default the nightly snapshot comes
+    first and only the sources it doesn't cover are fetched directly;
+    `direct` (or naming sources) skips the snapshot."""
     profiles = []
     for path in profile_mod.list_profiles():
         try:
@@ -64,12 +83,19 @@ def sync(store: Store, only: list[str] | None = None, force: bool = False,
     wanted = _wanted_sources(profiles)
     now = datetime.now(timezone.utc)
     results = {}
+    covered: dict[str, str] = {}
+    if not only and not direct:
+        results["snapshot"] = _pull_snapshot(store, log)
+        covered = snapshot.covered(store, countries, WEEKLY)
     for name in only or SOURCES:
         if name not in fetchers:
             results[name] = {"ok": False, "error": f"unknown source {name!r}"}
             continue
         if not only and name not in wanted:
             results[name] = {"ok": True, "skipped": "no profile uses this source"}
+            continue
+        if name in covered:
+            results[name] = {"ok": True, "skipped": f"covered by the nightly snapshot of {covered[name]}"}
             continue
         last = store.last_success(name)
         if last and name in WEEKLY and not force and now - last < timedelta(days=6):
@@ -79,6 +105,9 @@ def sync(store: Store, only: list[str] | None = None, force: bool = False,
             MAX_WINDOW_DAYS, max(2, math.ceil((now - last).total_seconds() / 86400) + 1))
         ctx = SyncContext(since_days=days, first_run=last is None,
                           known_ids=store.existing_ids(name), countries_iso2=countries)
+        if name == "ted":  # the snapshot records which countries its TED stock covers
+            store.conn.execute("INSERT OR REPLACE INTO meta VALUES ('ted_countries', ?)",
+                               (json.dumps(countries),))
         log(f"[{name}] syncing ({'first run: open stock' if ctx.first_run else f'last {days} days'})")
         run_id = store.start_run(name)
         counts = {"new": 0, "updated": 0, "unchanged": 0}
