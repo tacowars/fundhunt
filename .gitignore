@@ -6,6 +6,9 @@
 !/profiles/README.md
 !/profiles/example-*.yaml
 
+# session handoffs between agents: local working notes, never published
+/.claude/handoffs/
+
 # private word list for scripts/privacy-check.sh
 /.privacy-words
 .env
