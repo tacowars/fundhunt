@@ -15,8 +15,9 @@
   details to fetch by the ids it holds, so a skipped closed call would
   be fetched again every night.
 - **In the snapshot.** Closed records from every other source are pruned
-  as soon as their deadline passes, since nothing would fetch them
-  again. BDNS keeps the 60-day rule: closed for 60 days, and held for 60
+  as soon as `lifecycle()` calls them closed, by deadline or by status
+  (TED `can-*`, PLACSP `resuelta`), since nothing would fetch them
+  again. A deadline-only check missed the undated award notices. BDNS keeps the 60-day rule: closed for 60 days, and held for 60
   days.
 
 ## Why
@@ -28,9 +29,11 @@ notices for tenders the corpus never held. They took the snapshot from
 the same way. Ranking excludes closed records anyway, so they were dead
 weight.
 
-Rebuilding that same snapshot under these rules gives 6.7 MB: PLACSP
-drops from 10,856 records to 6,263, and SEDIA's stale "open" topics past
-their deadline go as well.
+Rebuilding that same snapshot under these rules gives 6.4 MB instead of
+9.8 MB:
+- PLACSP drops from 10,856 records to 5,835;
+- TED drops from 2,529 to 2,129, losing its award notices;
+- SEDIA's stale "open" topics past their deadline go as well.
 
 ## Punted / alternatives
 

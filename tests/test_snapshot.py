@@ -145,7 +145,9 @@ def test_sync_skips_closed_records_it_never_held(monkeypatch):
 
 def test_build_drops_closed_records_except_bdns(tmp_path):
     past = datetime.now() - timedelta(days=3)
-    st = nightly(tmp_path, [opp(source="placsp", sid="closed", deadline=past),
+    resolved = opp(source="placsp", sid="resolved")
+    resolved.status = "resuelta"  # closed by status, with no deadline
+    st = nightly(tmp_path, [opp(source="placsp", sid="closed", deadline=past), resolved,
                             opp(source="placsp", sid="open"),
                             opp(source="bdns", sid="closed", deadline=past)])
     assert snapshot.build(st, tmp_path / "dist")["records"] == {"bdns": 1, "placsp": 1}
