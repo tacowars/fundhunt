@@ -29,6 +29,8 @@ jobs:
       - name: Sync every source directly
         id: sync
         continue-on-error: true   # publish what arrived; the failure is reported below
+        # an explicit bash runs with pipefail, so a failed sync isn't masked by tee
+        shell: bash
         env:
           # no profiles: every source is wanted and TED is fetched for Spain
           FUNDHUNT_PROFILES: ${{ runner.temp }}/no-profiles
