@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/logo-dark.svg">
+    <img src="docs/assets/logo-light.svg" alt="fundhunt logo: an engraved hunting dog" width="160">
+  </picture>
+</p>
+
 # fundhunt
 
 Find EU and Spanish **grants and aid (subvenciones, ayudas)** and **public

@@ -143,7 +143,13 @@ def render(data: dict) -> str:
     payload = json.dumps({"data": data, "s": s}, ensure_ascii=False).replace("</", "<\\/")
     title = f"fundhunt · {html.escape(data['profile'])}"
     return TEMPLATE.replace("__TITLE__", title).replace("__LANG__", data["language"]) \
-        .replace("__PAYLOAD__", payload)
+        .replace("__LOGO__", _logo()).replace("__PAYLOAD__", payload)
+
+
+def _logo() -> str:
+    # The mark is filled with currentColor, so it follows the page's light/dark ink.
+    svg = (Path(__file__).resolve().parent / "data" / "logo.svg").read_text(encoding="utf-8")
+    return svg.replace("<svg ", '<svg class="logo" aria-hidden="true" focusable="false" ', 1)
 
 
 def write(store: Store, prof: Profile, open_browser: bool = False) -> dict:
@@ -181,6 +187,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-app
 header{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px}
 .wrap{max-width:980px;margin:0 auto}
 .top{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.brand{display:flex;gap:10px;align-items:center;min-width:0}
+.logo{height:40px;width:auto;flex:none;color:var(--ink)}
 h1{font-size:18px;margin:0 0 2px}.meta{color:var(--muted);font-size:13px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
 .bar input[type=search]{flex:1 1 200px;min-width:0;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
@@ -232,7 +240,7 @@ details ul{margin:4px 0 0 18px;padding:0;font-size:13px;color:var(--muted)}
 </head>
 <body>
 <header><div class="wrap">
- <div class="top"><div><h1 id="h"></h1><div class="meta" id="meta"></div></div>
+ <div class="top"><div class="brand">__LOGO__<div><h1 id="h"></h1><div class="meta" id="meta"></div></div></div>
   <button id="help" type="button"></button></div>
  <div class="bar">
   <input type="search" id="q">
