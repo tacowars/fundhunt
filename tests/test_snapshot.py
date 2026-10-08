@@ -120,3 +120,32 @@ def test_unreachable_snapshot_is_not_fatal(tmp_path, monkeypatch):
     monkeypatch.setenv("FUNDHUNT_SNAPSHOT", str(tmp_path / "nowhere"))
     res = pipeline.sync(Store(), only=None, log=lambda m: None)
     assert res["snapshot"]["status"] == "unavailable" and res["snapshot"]["ok"]
+
+
+def test_sync_skips_closed_records_it_never_held(monkeypatch):
+    past = datetime.now() - timedelta(days=3)
+    future = datetime.now() + timedelta(days=30)
+    st = Store()
+    st.upsert(opp(source="placsp", sid="tracked", deadline=future))
+    st.commit()
+    feeds = {
+        "placsp": [opp(source="placsp", sid="award-only", deadline=past),   # skipped
+                   opp(source="placsp", sid="tracked", title="now closed", deadline=past),
+                   opp(source="placsp", sid="fresh", deadline=future)],
+        "bdns": [opp(source="bdns", sid="closed-call", deadline=past)],     # kept
+    }
+    monkeypatch.setattr(pipeline, "registry", lambda: {s: (lambda ctx, s=s: iter(feeds[s]))
+                                                        for s in feeds})
+    res = pipeline.sync(st, only=["placsp", "bdns"], log=lambda m: None)
+    assert (res["placsp"]["skipped_closed"], res["placsp"]["new"], res["placsp"]["updated"]) == (1, 1, 1)
+    assert st.get("placsp:award-only") is None
+    assert st.get("placsp:tracked").title == "now closed"  # a held record still learns it closed
+    assert st.get("bdns:closed-call") is not None
+
+
+def test_build_drops_closed_records_except_bdns(tmp_path):
+    past = datetime.now() - timedelta(days=3)
+    st = nightly(tmp_path, [opp(source="placsp", sid="closed", deadline=past),
+                            opp(source="placsp", sid="open"),
+                            opp(source="bdns", sid="closed", deadline=past)])
+    assert snapshot.build(st, tmp_path / "dist")["records"] == {"bdns": 1, "placsp": 1}

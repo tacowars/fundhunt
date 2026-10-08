@@ -26,6 +26,7 @@ from pathlib import Path
 
 from . import http
 from .settings import data_dir, snapshot_url
+from .sources import KEEPS_UNKNOWN_CLOSED
 from .store import SCHEMA_VERSION, Store, now
 
 FORMAT = 1
@@ -47,6 +48,9 @@ FRESH_WEEKLY = timedelta(days=8)
 def build(store: Store, out_dir: Path) -> dict:
     out_dir.mkdir(parents=True, exist_ok=True)
     built_at = now()
+    # closed records of these sources are never fetched again unless held,
+    # so the snapshot can drop them as soon as their deadline passes
+    keeps = ", ".join(f"'{s}'" for s in sorted(KEEPS_UNKNOWN_CLOSED))
     with tempfile.TemporaryDirectory() as tmp:
         lean = Path(tmp) / "snapshot.db"
         store.commit()
@@ -57,7 +61,8 @@ def build(store: Store, out_dir: Path) -> dict:
             DELETE FROM verdicts; DELETE FROM decisions;
             DELETE FROM meta WHERE key = 'snapshot';
             DELETE FROM opportunities
-             WHERE (deadline < datetime('now', '-{PRUNE_CLOSED_DAYS} days')
+             WHERE (source NOT IN ({keeps}) AND deadline < datetime('now'))
+                OR (deadline < datetime('now', '-{PRUNE_CLOSED_DAYS} days')
                     AND first_seen < datetime('now', '-{PRUNE_CLOSED_DAYS} days'))
                 OR (deadline IS NULL AND last_seen < datetime('now', '-{PRUNE_UNDATED_DAYS} days'));
             DELETE FROM source_runs WHERE id NOT IN (

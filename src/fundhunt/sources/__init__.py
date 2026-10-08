@@ -43,6 +43,12 @@ def registry() -> dict[str, Fetch]:
     }
 
 
+# A closed record whose id isn't stored yet is skipped by `sync` (most of an
+# incremental PLACSP window is award and resolution notices), except for
+# these sources: BDNS picks which details to fetch by the ids it already
+# holds, so it must keep closed calls or it would fetch them every night.
+KEEPS_UNKNOWN_CLOSED = {"bdns"}
+
 SOURCES = ["ted", "bdns", "placsp", "sedia", "sedia_cascade", "interreg", "epah"]
 
 DESCRIPTIONS = {
