@@ -20,7 +20,7 @@ from .models import Opportunity, lifecycle
 from .profile import Profile
 from .rank import TIER_LABELS, crossref, dupkey
 from .settings import snapshot_url
-from .sources import SOURCES, SyncContext, registry
+from .sources import KEEPS_UNKNOWN_CLOSED, SOURCES, SyncContext, registry
 from .store import Store, split_ref
 
 # Sources whose content changes slowly enough that a weekly poll is plenty.
@@ -110,9 +110,13 @@ def sync(store: Store, only: list[str] | None = None, force: bool = False,
                                (json.dumps(countries),))
         log(f"[{name}] syncing ({'first run: open stock' if ctx.first_run else f'last {days} days'})")
         run_id = store.start_run(name)
-        counts = {"new": 0, "updated": 0, "unchanged": 0}
+        counts = {"new": 0, "updated": 0, "unchanged": 0, "skipped_closed": 0}
         try:
             for i, opp in enumerate(fetchers[name](ctx), 1):
+                if (name not in KEEPS_UNKNOWN_CLOSED and opp.source_id not in ctx.known_ids
+                        and lifecycle(opp) == "closed"):
+                    counts["skipped_closed"] += 1
+                    continue
                 counts[store.upsert(opp)] += 1
                 # commit per record: the adapter fetches between yields, and an
                 # open write transaction would lock out a concurrent rank/verdict

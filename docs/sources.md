@@ -22,6 +22,13 @@ Common rules:
   it; only its deadline or explicit status does (`models.lifecycle`).
 - **Partial runs.** When a cap bites, the run is recorded as `partial`
   and the next run starts from the same point.
+- **Closed records we never held are skipped** (`sync`, counted as
+  `skipped_closed`), except for BDNS. Most of an incremental PLACSP
+  window, and part of TED's, is award and resolution notices for tenders
+  nobody tracked: about 5,000 a day. A record we already hold still
+  takes the update, so it learns that it closed. BDNS is exempt: it picks
+  which details to fetch by the ids it holds, so it would fetch a skipped
+  call every night (`KEEPS_UNKNOWN_CLOSED`).
 
 ## TED: EU tenders (stable)
 
