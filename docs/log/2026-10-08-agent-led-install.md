@@ -20,9 +20,12 @@
     Windows), and work around a stale `PATH`;
   - run `status` and `sync`, then hand over to the skill.
 - **Updates are a sentence too** ("Update fundhunt", skill workflow E):
-  `git pull` for a clone. For a zip, the assistant extracts the new zip
-  over the folder; the zip holds no user files, so profiles and `data/`
-  survive.
+  `git pull` for a clone. For a zip, the assistant extracts a fresh copy,
+  moves the user's profiles and `data/` into it, and swaps the folders,
+  keeping the old one until the user agrees to delete it. Extracting
+  over the old folder fails where a path changed type (the old skill
+  symlinks were text files in a Windows extraction) and leaves deleted
+  files behind.
 - **Technical setup moves to a "For technical users" section** near the
   end of the README.
 - **Windows-safe agent I/O.**

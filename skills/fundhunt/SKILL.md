@@ -208,14 +208,24 @@ Ask before installing anything.
 
 1. Find out how this copy was installed: a `.git` folder means a clone.
 2. **A clone:** run `git pull`.
-3. **A zip download:** download
-   `https://github.com/tacowars/fundhunt/archive/refs/heads/main.zip`
-   and extract the contents of its `fundhunt-main/` folder over this
-   folder, replacing files. The zip holds no user files, so the user's
-   profiles and `data/` are kept.
-4. Run `uv run fundhunt status` to confirm everything still works, then
-   tell the user in a sentence what changed. The newest entries in
-   `docs/log/` and `docs/adr/` say.
+3. **A zip download:** build a fresh copy and swap it in. Don't extract
+   over the old folder: paths that changed type, such as an old file
+   where a folder now lives, block the extraction, and files deleted
+   upstream would linger.
+   1. Download
+      `https://github.com/tacowars/fundhunt/archive/refs/heads/main.zip`
+      and extract its `fundhunt-main/` folder next to the install, as
+      `fundhunt-new`.
+   2. Move the user's own files into `fundhunt-new`: `data/` and every
+      file in `profiles/` except `README.md` and `example-*.yaml`.
+   3. Rename the old folder to `fundhunt-old` and `fundhunt-new` to the
+      original name. If a file in the old folder is open and blocks the
+      rename, ask the user to close it.
+4. Run `uv run fundhunt status` in the new folder. If it fails, swap the
+   two folders back and tell the user.
+5. Tell the user in a sentence what changed; the newest entries in
+   `docs/log/` and `docs/adr/` say. For a zip update, offer to delete
+   `fundhunt-old`.
 
 ## Rules
 
