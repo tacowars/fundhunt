@@ -31,7 +31,8 @@ from .store import SCHEMA_VERSION, Store, now
 FORMAT = 1
 DB_ASSET = "fundhunt-snapshot.db.gz"
 MANIFEST_ASSET = "fundhunt-snapshot.json"
-PRUNE_CLOSED_DAYS = 60     # keep recently closed records: the BDNS backlog skips known ids
+PRUNE_CLOSED_DAYS = 60     # closed this long ago and held this long: BDNS skips known ids,
+                           # so a record pruned the day it arrived would be fetched again
 PRUNE_UNDATED_DAYS = 365   # undated records (award notices) not seen for a year
 RUNS_KEPT = 10             # recent source_runs per source
 
@@ -56,7 +57,8 @@ def build(store: Store, out_dir: Path) -> dict:
             DELETE FROM verdicts; DELETE FROM decisions;
             DELETE FROM meta WHERE key = 'snapshot';
             DELETE FROM opportunities
-             WHERE deadline < datetime('now', '-{PRUNE_CLOSED_DAYS} days')
+             WHERE (deadline < datetime('now', '-{PRUNE_CLOSED_DAYS} days')
+                    AND first_seen < datetime('now', '-{PRUNE_CLOSED_DAYS} days'))
                 OR (deadline IS NULL AND last_seen < datetime('now', '-{PRUNE_UNDATED_DAYS} days'));
             DELETE FROM source_runs WHERE id NOT IN (
                 SELECT id FROM (SELECT id, row_number() OVER (

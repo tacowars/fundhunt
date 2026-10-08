@@ -38,11 +38,13 @@ def nightly(tmp_path, records, fresh=True) -> Store:
 def test_build_is_lean(tmp_path):
     old = datetime.now() - timedelta(days=200)
     st = nightly(tmp_path, [opp(sid="open"), opp(sid="long-closed", deadline=old)])
+    st.conn.execute("UPDATE opportunities SET first_seen = ?", (iso(-timedelta(days=90)),))
+    st.upsert(opp(sid="just-arrived", deadline=old))  # kept: BDNS skips known ids
     st.upsert(opp(sid="open", title="changed"))  # leaves a revision behind
     st.save_verdict("someone", {"ref": "bdns:open", "verdict": "strong"}, "h", "p")
     st.commit()
     res = snapshot.build(st, tmp_path / "dist")
-    assert res["records"] == {"bdns": 1}
+    assert res["records"] == {"bdns": 2}
     assert set(res["runs"]) == set(SOURCES)
 
     db = tmp_path / "check.db"

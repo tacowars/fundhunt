@@ -43,9 +43,10 @@ again and again.
    - It contains the corpus and each source's recent `source_runs`.
    - It leaves out the revision history and every per-profile table, so
      no verdict, decision or match is ever published.
-   - Records whose deadline passed more than 60 days ago are pruned.
-     Recently closed ones stay, because BDNS uses known ids to drain its
-     backlog. Undated records unseen for a year are pruned too, so the
+   - Records whose deadline passed more than 60 days ago, and that the
+     corpus has held for 60 days, are pruned. Anything younger stays,
+     because BDNS uses known ids to drain its backlog: a late-registered
+     old call pruned on arrival would be fetched again every night. Undated records unseen for a year are pruned too, so the
      nightly corpus doesn't grow without bound.
    - It is gzipped, and published with a JSON manifest (build time,
      schema version, sha256, record counts, the last good run per source
@@ -79,6 +80,10 @@ again and again.
   31 MB after `VACUUM`. The lean snapshot is 4.7 MB gzipped (10.8k
   records), and merging it into an empty database takes under a second.
   A typical first sync drops from about 30 minutes to seconds.
+- The first run on GitHub-hosted runners (2026-10-08) reached all seven
+  sources, PLACSP's firewall included. It took 28 minutes and published
+  4.4 MB (9.7k records). A fresh database then pulled and merged it,
+  skipping every source, in about 2 seconds.
 - fundhunt now has one hosted component: a scheduled workflow. It costs
   nothing on a public repository. If the job fails, users' syncs fall
   back to direct fetching, so a failure in the job means more load and
