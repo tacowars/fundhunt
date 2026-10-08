@@ -7,51 +7,106 @@
 
 # fundhunt
 
-Find EU and Spanish **grants and aid (subvenciones, ayudas)** and **public
-tenders (licitaciones)** that fit *you*: a company, a consultancy, a public
-body, an NGO or a research group. It runs on your own machine. You don't
-write any code: you fill in a profile, and your coding agent (Claude Code,
-OpenAI Codex, Cowork or similar) does the rest.
+**Encuentra subvenciones, ayudas y licitaciones públicas, españolas y
+europeas, que encajan contigo.** Para autónomos, pymes, ayuntamientos,
+asociaciones y quienes les asesoran. No hace falta saber informática:
+tu asistente de IA lo instala y lo maneja por ti.
+
+*Find Spanish and EU grants, aid and public tenders that fit you. Your AI
+assistant installs and runs it for you. [English below](#get-started).*
+
+## Empieza aquí
+
+Necesitas un ordenador (Windows o Mac) y un asistente de IA que pueda
+trabajar con archivos y programas en tu ordenador. Por ejemplo, la app de
+escritorio de **Claude** con *Cowork* o *Claude Code*, o **ChatGPT** con
+*Codex*. Abre una conversación y escribe:
+
+> **Instala fundhunt desde https://github.com/tacowars/fundhunt y
+> configúralo para mí.**
+
+El asistente lo descarga, te pide permiso antes de instalar nada y luego
+te hace unas pocas preguntas sobre ti o tu organización. También puede
+leer tu web o un folleto. Con eso prepara tu perfil.
+
+Después, cuando quieras resultados nuevos, dile:
+
+> **Busca subvenciones y licitaciones para mí.**
+
+Revisa las convocatorias, lee los documentos oficiales de las mejores y
+te abre una página con los resultados. En esa página marcas cada una
+como *me interesa*, *quizás* o *descartar*, y puedes añadir notas. Una
+visita guiada te enseña cómo la primera vez. Luego envías tus marcas al
+asistente con uno de los dos botones de la página. Así la próxima vez
+acierta más.
+
+Para tener la última versión, dile: **Actualiza fundhunt.**
+
+## Get started
+
+You need a computer (Windows or Mac) and an AI assistant that can work
+with files and programs on it. For example, the **Claude** desktop app
+with *Cowork* or *Claude Code*, or **ChatGPT** with *Codex*. Start a
+conversation and say:
+
+> **Install fundhunt from https://github.com/tacowars/fundhunt and set
+> it up for me.**
+
+The assistant downloads it, asks before installing anything, and then
+asks you a few questions about you or your organisation. It can also
+read your website or a brochure. From that it writes your profile.
+
+After that, whenever you want fresh results, say:
+
+> **Find grants and tenders for me.**
+
+It goes through the calls, reads the official documents of the best
+ones, and opens a results page. On the page you mark each call
+*pursue*, *maybe* or *dismiss*, and add notes. A guided tour shows how
+on first open. Then you send your marks back with one of the page's two
+buttons, so the next run is sharper.
+
+To get the latest version, say: **Update fundhunt.**
+
+You can keep several profiles, for example your firm plus each client
+you advise.
+
+## For the assistant doing the install
+
+Talk to the user in their language and in plain words: they may never
+have used a terminal. Ask before installing anything.
+
+1. **Choose the folder.** Default to a `fundhunt` folder in the user's
+   Documents. In Cowork, use the folder the user shared with you.
+2. **Get the code.** If `git` is available, clone
+   `https://github.com/tacowars/fundhunt.git` into that folder.
+   Otherwise download
+   `https://github.com/tacowars/fundhunt/archive/refs/heads/main.zip`
+   and extract the contents of its `fundhunt-main/` folder into it.
+3. **Get uv** (it brings its own Python and needs no administrator
+   rights). Check with `uv --version`. If it's missing, ask, then run:
+   - Windows (PowerShell):
+     `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+   - macOS / Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+
+   A shell started before the install may not find `uv` yet. Open a new
+   one, or call it by its full path: `%USERPROFILE%\.local\bin\uv.exe` on
+   Windows, `~/.local/bin/uv` elsewhere.
+4. **Check it works.** From the folder, run `uv run fundhunt status`;
+   the first run sets up the environment. Then run
+   `uv run fundhunt sync`, which downloads the nightly data snapshot in
+   seconds.
+5. **Hand over to the skill.** Read `AGENTS.md`, then
+   `skills/fundhunt/SKILL.md` in full, and start its workflow A
+   (profile).
+
+## How it works
 
 ```
- public sources ──sync──▶ local SQLite ──rank──▶ shortlist ──agent judges──▶ HTML results page
- (TED, BDNS, PLACSP,      data/fundhunt.db       (keywords,    (reads the calls,     you mark pursue /
-  EU portal, Interreg…)                           codes, rules)  writes verdicts)     maybe / dismiss
+ public sources ──nightly──▶ snapshot ──sync──▶ local SQLite ──rank──▶ shortlist ──agent judges──▶ results page
+ (TED, BDNS, PLACSP,         (GitHub            data/fundhunt.db       (keywords,    (reads the calls,     you mark pursue /
+  EU portal, Interreg…)       release)                                  codes, rules)  writes verdicts)     maybe / dismiss
 ```
-
-## Quick start
-
-1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
-   (it brings its own Python), then clone:
-   ```bash
-   git clone https://github.com/tacowars/fundhunt.git && cd fundhunt
-   ```
-2. Open the folder in your agent and say:
-   > **Set up fundhunt for me.**
-
-   The agent interviews you, or reads your website or brochure, and writes
-   `profiles/<you>.yaml`. You can also copy one of the
-   `profiles/example-*.yaml` files and edit it by hand. Every field is
-   explained in [`profiles/README.md`](profiles/README.md).
-3. Then, whenever you want fresh results:
-   > **Run fundhunt for &lt;profile&gt;.**
-
-   The agent syncs the sources and ranks the corpus. It judges the top
-   candidates against your profile, reads the official documents of the
-   best ones, and opens a results page in your browser.
-4. On the page, mark each call *pursue / maybe / dismiss* and add notes.
-   A short guided tour shows how on first open. Then send your marks
-   back to the agent:
-   - **Download file** if your agent runs on this computer. It finds the
-     file in Downloads by itself; just say *"import my decisions"*.
-   - **Copy for agent** if it runs in the cloud, in a web or mobile app,
-     or can't see your files. Paste the copied text into the chat.
-
-   Dismissed calls stay out of the way next time, and your notes guide
-   the agent when it suggests changes to your profile.
-
-You can keep as many profiles as you like, e.g. your firm plus each
-client you advise. They share one database.
 
 **Syncing takes seconds.** A public job rebuilds the data from every
 source each night and publishes it as a
@@ -85,10 +140,26 @@ the sync reports it and the others carry on. See
   already use, under your own subscription. Verdicts are cached against
   each record's content, so only new or changed calls are judged again.
 - **Everything stays local.** Your profiles (`profiles/*.yaml`, except the
-  examples), the database and the reports are git-ignored. fundhunt only
-  talks to the public sources above.
+  examples), your marks, the database and the reports never leave your
+  computer. fundhunt only downloads: from the public sources above, and
+  the nightly snapshot from GitHub.
 
-## Without an agent
+## For technical users
+
+Clone and run it yourself with [uv](https://docs.astral.sh/uv/):
+
+```bash
+git clone https://github.com/tacowars/fundhunt.git && cd fundhunt
+uv run fundhunt status
+```
+
+Open the folder in any coding agent and say *"set up fundhunt for me"*.
+It reads `AGENTS.md` and the skill in `skills/fundhunt/`. You can also
+write `profiles/<you>.yaml` by hand: copy one of the
+`profiles/example-*.yaml` files. Every field is explained in
+[`profiles/README.md`](profiles/README.md).
+
+### Without an agent
 
 Every step is a plain command that prints JSON:
 
@@ -103,11 +174,11 @@ uv run fundhunt report --profile acme --open
 Without verdicts the page still shows the lexical ranking, under *Not yet
 reviewed*.
 
-## Scheduling
+### Scheduling
 
-To keep the database fresh between sessions, schedule the sync with cron,
-launchd or the Task Scheduler. Your agent can set this up ("schedule a
-daily fundhunt sync"):
+Since `sync` pulls the nightly snapshot, a schedule is rarely needed. To
+keep the database fresh between sessions anyway, schedule the sync with
+cron, launchd or the Task Scheduler:
 
 ```cron
 30 6 * * *  cd /path/to/fundhunt && uv run fundhunt sync >> data/sync.log 2>&1

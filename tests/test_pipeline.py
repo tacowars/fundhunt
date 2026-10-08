@@ -155,3 +155,27 @@ def test_pasted_block_survives_chat_wrapping(store, sme):
     assert res["applied"] == 2 and res["totals"] == {"pursue": 1, "note": 1}
     with pytest.raises(ValueError):
         pipeline.parse_decisions("no block here")
+
+
+def test_cli_output_is_utf8_whatever_the_console(tmp_path):
+    # a Windows console or pipe defaults to a legacy code page
+    import os
+    import subprocess
+    import sys
+    env = {**os.environ, "PYTHONIOENCODING": "ascii", "FUNDHUNT_HOME": str(tmp_path)}
+    out = subprocess.run([sys.executable, "-m", "fundhunt", "sources"],
+                         capture_output=True, env=env, check=True).stdout
+    assert "—" in out.decode("utf-8")
+
+
+def test_skill_pointers_match_the_skill():
+    # pointer files, not symlinks: a zip extracted on Windows drops symlinks
+    from pathlib import Path
+    REPO = Path(__file__).resolve().parents[1]
+    def front(path):
+        text = (REPO / path).read_text(encoding="utf-8")
+        return text[:text.index("\n---", 3)]
+    canonical = front("skills/fundhunt/SKILL.md")
+    for pointer in (".claude/skills/fundhunt/SKILL.md", ".agents/skills/fundhunt/SKILL.md"):
+        assert not (REPO / pointer).parent.is_symlink()
+        assert front(pointer) == canonical, f"{pointer} frontmatter drifted"
