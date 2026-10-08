@@ -31,7 +31,7 @@ judgment: whether a call fits this applicant, by which route, and why.
 |---|---|
 | "set up fundhunt", "create my profile", no profile exists yet | **A. Profile** |
 | "run fundhunt", "what's new", "find me grants/tenders" | **B. Run** |
-| "import my decisions", they mention the exported file | **B**, step 1 only, then offer a run |
+| "import my decisions", they mention or attach the exported file, or paste a block starting `FUNDHUNT-DECISIONS` | **B**, step 1 only, then offer a run |
 | "the results are off", "too much X" | **C. Tune** |
 | "keep it updated", "schedule it" | **D. Schedule** |
 
@@ -78,10 +78,24 @@ advise. All of them share one database.
 
 ## B. Run
 
-1. **Import decisions.** Run
-   `uv run fundhunt decisions import --profile <name>`. It picks up files
-   the report exported, from `~/Downloads` and `data/inbox/`. Mention what
-   it applied, e.g. "3 dismissed, 2 marked pursue".
+1. **Import decisions.** The user's marks on the last report reach you in
+   one of three ways. Handle whichever applies, then mention what was
+   applied, e.g. "3 dismissed, 2 marked pursue, 1 note".
+   - **A pasted block** starting with `FUNDHUNT-DECISIONS`, from the
+     page's **Copy for agent** button. This is the normal route in cloud,
+     web and mobile sessions. Pipe it verbatim:
+     ```bash
+     uv run fundhunt decisions import --profile <name> --stdin <<'EOF'
+     <the pasted block, exactly as given>
+     EOF
+     ```
+   - **An attached file** (`fundhunt-decisions-<profile>-<date>.json`):
+     pass its path, `uv run fundhunt decisions import --profile <name> <path>`.
+   - **Nothing given:** run `uv run fundhunt decisions import --profile <name>`.
+     It searches `~/Downloads` and `data/inbox/`, which works when you run
+     on the user's own machine. If it finds nothing and there is an
+     earlier report, ask once whether they marked anything. If they did,
+     explain both ways of sending marks back (step 9).
 2. **Sync.** Run `uv run fundhunt sync`.
    - The first sync takes about 30 minutes. Tell the user before it
      starts and let it run. BDNS reports `coverage: partial` for its
@@ -119,16 +133,28 @@ advise. All of them share one database.
    EOF
    ```
    Fix every entry the result lists under `errors`, then save again.
-8. **Report.** Run `uv run fundhunt report --profile <name> --open`. The
-   page opens in the user's browser. If it can't open, give them the path.
+8. **Report.** Run `uv run fundhunt report --profile <name> --open`. It
+   writes `data/reports/<name>-latest.html`, one self-contained file.
+   - **Running on the user's machine** (desktop app or terminal): the page
+     opens in their browser. If it doesn't, give them the path.
+   - **Running in a cloud or remote sandbox** (Claude Code on the web,
+     Codex cloud, a mobile app session): the user can't open your files.
+     Hand them the HTML file through whatever file-sharing your
+     environment offers (an attachment, a download link, an artifact).
+     If there is none, say so plainly and summarise the results in chat
+     instead.
 9. **Summarise in chat** in a few lines:
    - how many strong and plausible calls there are, and the 3–5 best,
      each with its deadline;
    - anything urgent, i.e. a deadline within 15 days;
    - any source that failed.
 
-   Remind them to mark candidates on the page and press **Export
-   decisions**.
+   Then tell them how to send their marks back. The page has a guided
+   tour, but say it once anyway:
+   - **Local session:** "press *Download file* and tell me *import my
+     decisions*";
+   - **Cloud, web or mobile session:** "press *Copy for agent* and paste
+     the text here".
 
 Don't judge the whole corpus. The lexical top-N is the funnel; raise
 `--top` only if the user asks for a wider net.
@@ -136,9 +162,12 @@ Don't judge the whole corpus. The lexical top-N is the funnel; raise
 ## C. Tune
 
 Use the user's decisions as evidence:
-- To read past verdicts and decisions, run
+- To read the user's marks and notes, run
+  `uv run fundhunt decisions list --profile <name>`. Notes are the
+  richest signal: they say *why*.
+- To read past verdicts, run
   `uv run fundhunt candidates --profile <name> --all`. Every candidate
-  carries `verdict_state`; the report shows the decisions.
+  carries `verdict_state`.
 - If several dismissed calls share a theme, propose a `negative` term or
   a `not_interested_in` sentence.
 - If good calls come in from a source the profile boosts too little, or

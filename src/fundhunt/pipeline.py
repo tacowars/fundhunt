@@ -287,7 +287,11 @@ def save_verdicts(store: Store, prof: Profile, payload) -> dict:
 
 # ----------------------------------------------------------- decisions -- #
 
+DECISIONS_MARKER = "FUNDHUNT-DECISIONS"
+
+
 def decision_files(prof: Profile, extra: list[Path]) -> list[Path]:
+    """Explicit paths plus exported files found in data/inbox and ~/Downloads."""
     from .settings import inbox_dir
     pattern = f"fundhunt-decisions-{prof.name}*.json"
     found = list(extra)
@@ -297,16 +301,39 @@ def decision_files(prof: Profile, extra: list[Path]) -> list[Path]:
     return found
 
 
-def import_decisions(store: Store, prof: Profile, files: list[Path]) -> dict:
-    """Idempotent: a mark is (profile, ref) → latest decided_at wins."""
+def parse_decisions(text: str) -> list[dict]:
+    """Decision payloads from an exported file or a block pasted into chat.
+
+    Accepts plain JSON, or text holding one or more blocks that start with
+    the FUNDHUNT-DECISIONS marker line (the report's "copy for agent"
+    button); chat apps may wrap the block in code fences or extra prose.
+    """
+    text = text.strip()
+    if text.startswith("{"):
+        return [json.loads(text)]
+    payloads, dec = [], json.JSONDecoder()
+    for chunk in text.split(DECISIONS_MARKER)[1:]:
+        brace = chunk.find("{")
+        if brace >= 0:
+            payloads.append(dec.raw_decode(chunk[brace:])[0])
+    if not payloads:
+        raise ValueError(f"no {DECISIONS_MARKER} block or JSON object found")
+    return payloads
+
+
+def import_decisions(store: Store, prof: Profile, payloads: list[dict],
+                     sources: list[str] | None = None) -> dict:
+    """Idempotent: a mark is (profile, ref) → latest decided_at wins.
+
+    A cleared mark that still carries a note is kept as decision 'note'."""
     imported, skipped = 0, 0
-    for path in files:
-        data = json.loads(path.read_text(encoding="utf-8"))
+    for data in payloads:
         if data.get("profile") != prof.name:
             skipped += 1
             continue
         for d in data.get("decisions", []):
-            if d.get("decision") not in {"pursue", "maybe", "dismiss", None}:
+            decision = d.get("decision")
+            if decision not in {"pursue", "maybe", "dismiss", None}:
                 continue
             source, source_id = split_ref(d["ref"])
             cur = store.conn.execute(
@@ -314,19 +341,19 @@ def import_decisions(store: Store, prof: Profile, files: list[Path]) -> dict:
                 (prof.name, source, source_id)).fetchone()
             if cur and cur["decided_at"] >= (d.get("decided_at") or ""):
                 continue
-            if d.get("decision") is None:
+            if decision is None and not d.get("note"):
                 store.conn.execute(
                     "DELETE FROM decisions WHERE profile=? AND source=? AND source_id=?",
                     (prof.name, source, source_id))
             else:
-                store.save_decision(prof.name, d["ref"], d["decision"], d.get("note"),
+                store.save_decision(prof.name, d["ref"], decision or "note", d.get("note"),
                                     d.get("decided_at"))
             imported += 1
     store.commit()
     counts = {r["decision"]: r["n"] for r in store.conn.execute(
         "SELECT decision, COUNT(*) n FROM decisions WHERE profile=? GROUP BY decision",
         (prof.name,))}
-    return {"files": [str(p) for p in files], "applied": imported,
+    return {"sources": sources or [], "applied": imported,
             "skipped_other_profiles": skipped, "totals": counts}
 
 

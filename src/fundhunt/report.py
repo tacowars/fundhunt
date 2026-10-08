@@ -1,9 +1,19 @@
 """Self-contained HTML results page for one profile.
 
 One file, no network, no build step: data is embedded as JSON and rendered
-by a small inline script. Review marks (pursue / maybe / dismiss + note)
-are kept in the browser's localStorage and exported as a JSON file that
-`fundhunt decisions import` reads back into the database.
+by a small inline script, so the page works wherever the user can open a
+file — including when the agent runs in a cloud sandbox and hands the
+report over as a download.
+
+Review marks (pursue / maybe / dismiss + note) live in the browser until
+the user sends them back, by either route `fundhunt decisions import`
+understands:
+- "Download file": fundhunt-decisions-<profile>-<date>.json, found
+  automatically in ~/Downloads by an agent on the same machine;
+- "Copy for agent": a FUNDHUNT-DECISIONS text block to paste into the
+  chat, for agents that cannot see the user's files.
+A first-visit guided tour, an unsent-marks counter and a leave-page warning
+make the send-back step hard to forget (docs/log/2026-10-08-decision-return-channels).
 """
 
 from __future__ import annotations
@@ -23,13 +33,21 @@ UNJUDGED_SHOWN = 25
 
 STRINGS = {
     "es": {
-        "title": "Oportunidades", "strong": "Para presentarse", "plausible": "Vale la pena mirar",
+        "strong": "Para presentarse", "plausible": "Vale la pena mirar",
         "unjudged": "Aún sin revisar (solo ranking léxico)", "reject": "Descartadas por el agente",
         "grant": "Subvención / ayuda", "tender": "Licitación", "deadline": "Plazo",
-        "days": "días", "budget": "Presupuesto", "source": "Fuente", "why": "Por qué",
+        "days": "días", "budget": "Presupuesto", "source": "Fuente",
         "constraints": "Condiciones clave", "next": "Siguiente paso", "lexical": "Coincidencias léxicas",
-        "pursue": "Me interesa", "maybe": "Quizás", "dismiss": "Descartar", "note": "Nota…",
-        "export": "Exportar decisiones", "exported": "Guardado. Dile a tu agente: «importa mis decisiones».",
+        "pursue": "Me interesa", "maybe": "Quizás", "dismiss": "Descartar", "note": "Nota para el agente…",
+        "download": "Descargar archivo", "copy": "Copiar para el agente",
+        "pending": "{n} sin enviar", "pending1": "1 sin enviar", "allsent": "Todo enviado",
+        "nomarks": "Sin marcas aún",
+        "downloaded": "Descargado {file}. Dile a tu agente: «importa mis decisiones». Si no puede ver tu carpeta de Descargas, adjunta el archivo al chat o usa «Copiar para el agente».",
+        "copied": "Copiado. Pégalo en el chat con tu agente y dile «importa mis decisiones».",
+        "copy_title": "Copia este texto y pégalo en el chat",
+        "copy_body": "Tu navegador no permitió copiar automáticamente. Selecciona todo el texto (ya está seleccionado), cópialo y pégalo en la conversación con tu agente.",
+        "copy_done": "Ya lo he copiado", "close": "Cerrar",
+        "leave": "Tienes marcas sin enviar a tu agente.",
         "all": "Todo", "search": "Buscar…", "hide_dismissed": "Ocultar descartadas",
         "stale": "La convocatoria o el perfil cambiaron desde la revisión",
         "ai": "Análisis del agente", "generated": "Generado", "corpus": "registros en la base",
@@ -38,15 +56,31 @@ STRINGS = {
         "lifecycle": {"open": "abierta", "forthcoming": "próxima", "uncertain": "estado incierto"},
         "variants": "variantes similares", "fit": "Encaje", "empty": "Nada en esta sección.",
         "indirect": "indirecta", "unread": "sin leer documentos",
+        "help": "Guía", "t_next": "Siguiente", "t_back": "Atrás", "t_done": "Entendido", "t_skip": "Saltar guía",
+        "tour": [
+            ["Tus oportunidades", "Tu agente ha revisado las convocatorias y licitaciones que mejor encajan con tu perfil. Arriba, las que recomienda; abajo, las que aún no ha revisado y las que descartó."],
+            ["Marca cada una", "Pulsa «Me interesa», «Quizás» o «Descartar». Pulsa otra vez para quitar la marca. Las descartadas dejan de aparecerle al agente."],
+            ["Añade notas", "¿Por qué sí o por qué no? Una nota corta ayuda al agente a afinar tu perfil en la próxima búsqueda."],
+            ["¡No olvides enviarlas!", "Tus marcas solo viven en este navegador hasta que se las devuelvas al agente. Si tu agente trabaja en este ordenador, pulsa «Descargar archivo»: lo encontrará solo en Descargas. Si trabaja en la nube, en el móvil o no puede ver tus archivos, pulsa «Copiar para el agente» y pega el texto en el chat."],
+            ["Aquí tienes la guía", "Puedes volver a ver esta guía cuando quieras."],
+        ],
     },
     "en": {
-        "title": "Opportunities", "strong": "Worth pursuing", "plausible": "Worth a look",
+        "strong": "Worth pursuing", "plausible": "Worth a look",
         "unjudged": "Not yet reviewed (lexical ranking only)", "reject": "Ruled out by the agent",
         "grant": "Grant / aid", "tender": "Tender", "deadline": "Deadline",
-        "days": "days", "budget": "Budget", "source": "Source", "why": "Why",
+        "days": "days", "budget": "Budget", "source": "Source",
         "constraints": "Key constraints", "next": "Next step", "lexical": "Lexical matches",
-        "pursue": "Pursue", "maybe": "Maybe", "dismiss": "Dismiss", "note": "Note…",
-        "export": "Export decisions", "exported": "Saved. Tell your agent: \"import my decisions\".",
+        "pursue": "Pursue", "maybe": "Maybe", "dismiss": "Dismiss", "note": "Note for the agent…",
+        "download": "Download file", "copy": "Copy for agent",
+        "pending": "{n} not sent", "pending1": "1 not sent", "allsent": "All sent",
+        "nomarks": "No marks yet",
+        "downloaded": "Downloaded {file}. Tell your agent: \"import my decisions\". If it cannot see your Downloads folder, attach the file in the chat or use \"Copy for agent\".",
+        "copied": "Copied. Paste it into the chat with your agent and say \"import my decisions\".",
+        "copy_title": "Copy this text and paste it into the chat",
+        "copy_body": "Your browser did not allow automatic copying. Select all the text (it is already selected), copy it, and paste it into the conversation with your agent.",
+        "copy_done": "I've copied it", "close": "Close",
+        "leave": "You have marks not yet sent to your agent.",
         "all": "All", "search": "Search…", "hide_dismissed": "Hide dismissed",
         "stale": "The call or the profile changed since this review",
         "ai": "Agent analysis", "generated": "Generated", "corpus": "records in the database",
@@ -55,6 +89,14 @@ STRINGS = {
         "lifecycle": {"open": "open", "forthcoming": "forthcoming", "uncertain": "status uncertain"},
         "variants": "similar variants", "fit": "Fit", "empty": "Nothing in this section.",
         "indirect": "indirect", "unread": "documents not read",
+        "help": "Guide", "t_next": "Next", "t_back": "Back", "t_done": "Got it", "t_skip": "Skip guide",
+        "tour": [
+            ["Your opportunities", "Your agent reviewed the calls and tenders that best fit your profile. At the top, the ones it recommends; further down, the ones it has not reviewed yet and the ones it ruled out."],
+            ["Mark each one", "Press Pursue, Maybe or Dismiss. Press again to clear the mark. Dismissed calls stop being shown to the agent."],
+            ["Add notes", "Why yes, why not? A short note helps the agent tune your profile on the next search."],
+            ["Don't forget to send them!", "Your marks only live in this browser until you give them back to the agent. If your agent runs on this computer, press Download file: it will find it in Downloads by itself. If it runs in the cloud, on your phone, or cannot see your files, press Copy for agent and paste the text into the chat."],
+            ["The guide lives here", "You can replay this guide any time."],
+        ],
     },
 }
 
@@ -66,7 +108,7 @@ def build(store: Store, prof: Profile) -> dict:
         row, opp = g["row"], g["opp"]
         c = pipeline.card(row, opp)
         c["variants"] = len(g["variants"])
-        c["decision"] = row["decision"]
+        c["decision"] = None if row["decision"] == "note" else row["decision"]
         c["note"] = row["note"]
         if row["verdict"]:
             c["agent"] = {
@@ -125,21 +167,31 @@ TEMPLATE = r"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>__TITLE__</title>
 <style>
 :root{--bg:#f7f7f4;--card:#fff;--ink:#1c1d1f;--muted:#62666d;--line:#e3e3de;--accent:#1f6f5c;
- --strong:#1f6f5c;--plausible:#a26a00;--reject:#8a8f98;--chip:#eef1ee;--warn:#b54708;--focus:#2563eb}
+ --strong:#1f6f5c;--plausible:#a26a00;--reject:#8a8f98;--chip:#eef1ee;--warn:#b54708;--warnbg:#fff4e5;
+ --ok:#1f6f5c;--focus:#2563eb;--scrim:rgba(15,17,20,.55)}
 @media (prefers-color-scheme:dark){:root{--bg:#141517;--card:#1d1f22;--ink:#e8e8e6;--muted:#9aa0a8;
- --line:#2e3135;--accent:#5fc2a6;--strong:#5fc2a6;--plausible:#e3a93a;--reject:#7c828b;--chip:#262a2e;--warn:#f79009}}
+ --line:#2e3135;--accent:#5fc2a6;--strong:#5fc2a6;--plausible:#e3a93a;--reject:#7c828b;--chip:#262a2e;
+ --warn:#f7a14a;--warnbg:#3a2a17;--ok:#5fc2a6;--scrim:rgba(0,0,0,.65)}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 header{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px}
 .wrap{max-width:980px;margin:0 auto}
+.top{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
 h1{font-size:18px;margin:0 0 2px}.meta{color:var(--muted);font-size:13px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
 .bar input[type=search]{flex:1 1 200px;min-width:0;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+#send{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:4px;border-radius:10px}
+.badge{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--chip);color:var(--muted);white-space:nowrap}
+.badge.pending{background:var(--warnbg);color:var(--warn);font-weight:600}
+.badge.sent{color:var(--ok)}
 button,select{font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){button.primary{color:#0d1a16}}
+#help{border-radius:999px;white-space:nowrap}
 main{padding:8px 16px 60px}
 h2{font-size:15px;margin:28px 0 10px;display:flex;gap:8px;align-items:center}
 h2 .n{color:var(--muted);font-weight:400}
@@ -161,37 +213,75 @@ details ul{margin:4px 0 0 18px;padding:0;font-size:13px;color:var(--muted)}
 .act input{flex:1 1 160px;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:13px}
 .empty{color:var(--muted);font-size:13px}
 :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-#toast{position:fixed;bottom:16px;left:16px;right:16px;max-width:520px;margin:auto;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;display:none}
+#toast{position:fixed;bottom:16px;left:16px;right:16px;max-width:560px;margin:auto;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;display:none;z-index:5}
+/* guided tour */
+#scrim{position:fixed;inset:0;background:var(--scrim);z-index:10;display:none}
+#spot{position:fixed;z-index:11;border-radius:10px;box-shadow:0 0 0 4px var(--accent),0 0 0 9999px var(--scrim);pointer-events:none;display:none;transition:all .18s ease}
+#bubble{position:fixed;z-index:12;width:min(380px,calc(100vw - 32px));background:var(--card);color:var(--ink);border:1px solid var(--line);
+ border-radius:12px;padding:14px 16px;box-shadow:0 12px 32px rgba(0,0,0,.25);display:none}
+#bubble h3{margin:0 0 6px;font-size:16px}#bubble p{margin:0 0 12px;font-size:14px}
+#bubble .row{display:flex;gap:8px;align-items:center}
+#bubble .row .grow{flex:1}
+#bubble .steps{font-size:12px;color:var(--muted)}
+/* copy fallback */
+#copybox{position:fixed;inset:0;z-index:20;background:var(--scrim);display:none;align-items:center;justify-content:center;padding:16px}
+#copybox .panel{background:var(--card);border-radius:12px;padding:16px;width:min(640px,100%);max-height:90vh;display:flex;flex-direction:column;gap:10px}
+#copybox textarea{width:100%;min-height:200px;font:12px/1.4 ui-monospace,Menlo,monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+#copybox h3{margin:0;font-size:16px}#copybox p{margin:0;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
 <header><div class="wrap">
- <h1 id="h"></h1><div class="meta" id="meta"></div>
+ <div class="top"><div><h1 id="h"></h1><div class="meta" id="meta"></div></div>
+  <button id="help" type="button"></button></div>
  <div class="bar">
   <input type="search" id="q">
   <select id="kind"></select>
   <label class="meta"><input type="checkbox" id="hide" checked> <span id="hidel"></span></label>
-  <button class="primary" id="export"></button>
+  <div id="send"><span class="badge" id="badge"></span>
+   <button class="primary" id="download" type="button"></button>
+   <button id="copy" type="button"></button></div>
  </div>
 </div></header>
 <main class="wrap" id="main"></main>
-<div id="toast" role="status"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="scrim"></div><div id="spot"></div>
+<div id="bubble" role="dialog" aria-modal="true" aria-labelledby="bt"><h3 id="bt"></h3><p id="bp"></p>
+ <div class="row"><span class="steps grow" id="bs"></span><button id="bskip" type="button"></button>
+  <button id="bback" type="button"></button><button class="primary" id="bnext" type="button"></button></div></div>
+<div id="copybox" role="dialog" aria-modal="true" aria-labelledby="ct"><div class="panel">
+ <h3 id="ct"></h3><p id="cp"></p><textarea id="ctext" readonly></textarea>
+ <div class="row" style="display:flex;gap:8px;justify-content:flex-end"><button id="cclose" type="button"></button>
+  <button class="primary" id="cdone" type="button"></button></div></div></div>
 <script>
 const {data:D, s:S} = __PAYLOAD__;
-const KEY = "fundhunt-decisions-" + D.profile;
-let marks = {};
-try { marks = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+const KEY = "fundhunt-decisions-" + D.profile, SENT = KEY + "-sent", TOUR = "fundhunt-tour-v1";
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+};
+let marks = store.get(KEY, {});
+let lastSent = store.get(SENT, "");
 // database marks are the baseline; newer browser marks win
 for (const sec of Object.values(D.sections)) for (const c of sec)
-  if (c.decision && !marks[c.ref]) marks[c.ref] = {decision: c.decision, note: c.note || "", decided_at: ""};
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(marks)); } catch (e) {} };
+  if ((c.decision || c.note) && !marks[c.ref]) marks[c.ref] = {decision: c.decision, note: c.note || "", decided_at: ""};
+const save = () => { store.set(KEY, marks); badge(); };
 const esc = v => String(v ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 const $ = id => document.getElementById(id);
+const pending = () => Object.values(marks).filter(m => m.decided_at && m.decided_at > lastSent).length;
+const changed = () => Object.entries(marks).filter(([, m]) => m.decided_at);
 
 $("h").textContent = "fundhunt · " + D.profile;
 $("meta").textContent = `${S.generated} ${D.generated} · ${D.corpus.toLocaleString()} ${S.corpus}`;
-$("q").placeholder = S.search; $("hidel").textContent = S.hide_dismissed; $("export").textContent = S.export;
+$("q").placeholder = S.search; $("hidel").textContent = S.hide_dismissed;
+$("download").textContent = S.download; $("copy").textContent = S.copy; $("help").textContent = "? " + S.help;
 $("kind").innerHTML = `<option value="">${S.all}</option><option value="grant">${S.grant}</option><option value="tender">${S.tender}</option>`;
+
+function badge() {
+  const n = pending(), b = $("badge");
+  b.className = "badge" + (n ? " pending" : changed().length ? " sent" : "");
+  b.textContent = n ? (n === 1 ? S.pending1 : S.pending.replace("{n}", n)) : changed().length ? "✓ " + S.allsent : S.nomarks;
+}
 
 function chips(c) {
   const out = [`<span class="chip">${c.kind === "grant" ? S.grant : S.tender}</span>`,
@@ -221,9 +311,8 @@ function agent(a) {
 
 function card(c, sec) {
   const m = marks[c.ref] || {};
-  const btn = d => `<button data-ref="${esc(c.ref)}" data-d="${d}" aria-pressed="${m.decision === d}">${S[d]}</button>`;
-  return `<article class="card ${sec} ${m.decision === "dismiss" ? "dismiss" : ""}" data-kind="${c.kind}" data-ref="${esc(c.ref)}"
-     data-text="${esc((c.title + " " + (c.funder || "") + " " + (c.summary || "")).toLowerCase())}">
+  const btn = d => `<button type="button" data-ref="${esc(c.ref)}" data-d="${d}" aria-pressed="${m.decision === d}">${S[d]}</button>`;
+  return `<article class="card ${sec} ${m.decision === "dismiss" ? "dismiss" : ""}" data-ref="${esc(c.ref)}">
     <p class="t">${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a>` : esc(c.title)}</p>
     <div class="f">${esc(c.funder || "")}</div>
     <div class="chips">${chips(c)}</div>
@@ -231,7 +320,7 @@ function card(c, sec) {
     ${!c.agent && c.summary ? `<p class="f">${esc(c.summary.slice(0, 400))}${c.summary.length > 400 ? "…" : ""}</p>` : ""}
     <details><summary>${S.lexical} (${c.lexical.tier} · ${c.lexical.score})</summary><ul>${c.lexical.reasons.map(r => `<li>${esc(r)}</li>`).join("")}</ul></details>
     <div class="act">${btn("pursue")}${btn("maybe")}${btn("dismiss")}
-      <input data-note="${esc(c.ref)}" placeholder="${S.note}" value="${esc(m.note || "")}"></div>
+      <input data-note="${esc(c.ref)}" aria-label="${esc(S.note)}" placeholder="${esc(S.note)}" value="${esc(m.note || "")}"></div>
   </article>`;
 }
 
@@ -248,6 +337,7 @@ function draw() {
       : `<h2>${S[sec]} <span class="n">${items.length}</span></h2>${body}`;
   }
   $("main").innerHTML = html;
+  badge();
 }
 
 document.addEventListener("click", e => {
@@ -257,7 +347,7 @@ document.addEventListener("click", e => {
   marks[ref] = {decision: cur.decision === d ? null : d, note: cur.note || "", decided_at: new Date().toISOString()};
   save(); draw();
 });
-document.addEventListener("change", e => {
+document.addEventListener("input", e => {
   const ref = e.target.dataset && e.target.dataset.note;
   if (!ref) return;
   const cur = marks[ref] || {decision: null};
@@ -265,18 +355,102 @@ document.addEventListener("change", e => {
   save();
 });
 ["q", "kind", "hide"].forEach(id => $(id).addEventListener("input", draw));
-$("export").addEventListener("click", () => {
-  const decisions = Object.entries(marks).filter(([, m]) => m.decided_at)
-    .map(([ref, m]) => ({ref, decision: m.decision, note: m.note || null, decided_at: m.decided_at}));
-  const blob = new Blob([JSON.stringify({profile: D.profile, exported_at: new Date().toISOString(), decisions}, null, 2)], {type: "application/json"});
+
+// ---- sending marks back to the agent ---------------------------------
+function payload() {
+  return {profile: D.profile, exported_at: new Date().toISOString(),
+          decisions: changed().map(([ref, m]) => ({ref, decision: m.decision, note: m.note || null, decided_at: m.decided_at}))};
+}
+function markSent() { lastSent = new Date().toISOString(); store.set(SENT, lastSent); badge(); }
+function toast(msg, ms = 9000) {
+  const t = $("toast"); t.textContent = msg; t.style.display = "block";
+  clearTimeout(toast.h); toast.h = setTimeout(() => t.style.display = "none", ms);
+}
+$("download").addEventListener("click", () => {
+  const file = `fundhunt-decisions-${D.profile}-${new Date().toISOString().slice(0,10)}.json`;
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `fundhunt-decisions-${D.profile}-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  const t = $("toast"); t.textContent = S.exported; t.style.display = "block";
-  setTimeout(() => t.style.display = "none", 6000);
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(payload(), null, 2)], {type: "application/json"}));
+  a.download = file; document.body.appendChild(a); a.click(); a.remove();
+  markSent(); toast(S.downloaded.replace("{file}", file));
 });
+function pasteText() {
+  const p = payload();
+  return `FUNDHUNT-DECISIONS ${D.profile} · ${p.decisions.length} · ${p.exported_at.slice(0,10)}\n` +
+         `(agent: pipe this block to \`uv run fundhunt decisions import --profile ${D.profile} --stdin\`)\n` +
+         JSON.stringify(p);
+}
+$("copy").addEventListener("click", async () => {
+  const text = pasteText();
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) throw new Error("no clipboard");
+    await navigator.clipboard.writeText(text);
+    markSent(); toast(S.copied);
+  } catch (e) {
+    $("ct").textContent = S.copy_title; $("cp").textContent = S.copy_body;
+    $("cdone").textContent = S.copy_done; $("cclose").textContent = S.close;
+    $("ctext").value = text; $("copybox").style.display = "flex";
+    $("ctext").focus(); $("ctext").select();
+  }
+});
+$("cdone").addEventListener("click", () => { $("copybox").style.display = "none"; markSent(); toast(S.copied); });
+$("cclose").addEventListener("click", () => { $("copybox").style.display = "none"; });
+window.addEventListener("beforeunload", e => { if (pending()) { e.preventDefault(); e.returnValue = S.leave; return S.leave; } });
+
+// ---- guided tour ------------------------------------------------------
+const STEPS = [
+  {target: null},
+  {target: "#main .act"},
+  {target: "#main .act input"},
+  {target: "#send"},
+  {target: "#help"},
+];
+let step = -1;
+function steps() { return STEPS.map((s, i) => ({...s, text: S.tour[i]})).filter(s => !s.target || document.querySelector(s.target)); }
+function showStep(i) {
+  const all = steps(); step = i;
+  if (i < 0 || i >= all.length) return endTour();
+  const s = all[i], t = s.target && document.querySelector(s.target);
+  $("bt").textContent = s.text[0]; $("bp").textContent = s.text[1];
+  $("bs").textContent = `${i + 1} / ${all.length}`;
+  $("bback").textContent = S.t_back; $("bback").style.visibility = i ? "visible" : "hidden";
+  $("bnext").textContent = i === all.length - 1 ? S.t_done : S.t_next;
+  $("bskip").textContent = S.t_skip; $("bskip").style.display = i === all.length - 1 ? "none" : "";
+  const bub = $("bubble"), spot = $("spot");
+  bub.style.display = "block";
+  if (!t) {
+    spot.style.display = "none"; $("scrim").style.display = "block";
+    bub.style.left = Math.max(16, (innerWidth - bub.offsetWidth) / 2) + "px";
+    bub.style.top = Math.max(16, (innerHeight - bub.offsetHeight) / 2) + "px";
+  } else {
+    $("scrim").style.display = "none";
+    t.scrollIntoView({block: "center", behavior: "instant"});
+    const r = t.getBoundingClientRect(), pad = 6;
+    Object.assign(spot.style, {display: "block", left: r.left - pad + "px", top: r.top - pad + "px",
+                               width: r.width + 2 * pad + "px", height: r.height + 2 * pad + "px"});
+    const bw = bub.offsetWidth, bh = bub.offsetHeight;
+    const below = r.bottom + pad + 12, above = r.top - pad - 12 - bh;
+    bub.style.top = (below + bh < innerHeight - 8 || above < 8 ? Math.min(below, innerHeight - bh - 8) : above) + "px";
+    bub.style.left = Math.min(Math.max(16, r.left), innerWidth - bw - 16) + "px";
+  }
+  $("bnext").focus();
+}
+function endTour() {
+  ["bubble", "spot", "scrim"].forEach(id => $(id).style.display = "none");
+  step = -1; store.set(TOUR, true);
+}
+$("bnext").addEventListener("click", () => showStep(step + 1));
+$("bback").addEventListener("click", () => showStep(step - 1));
+$("bskip").addEventListener("click", endTour);
+$("help").addEventListener("click", () => showStep(0));
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") { if (step >= 0) endTour(); $("copybox").style.display = "none"; }
+  if (step >= 0 && e.key === "ArrowRight") showStep(step + 1);
+  if (step >= 0 && e.key === "ArrowLeft") showStep(step - 1);
+});
+addEventListener("resize", () => { if (step >= 0) showStep(step); });
+
 draw();
+if (!store.get(TOUR, false)) setTimeout(() => showStep(0), 300);
 </script>
 </body>
 </html>

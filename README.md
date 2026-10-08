@@ -32,10 +32,16 @@ OpenAI Codex, Cowork or similar) does the rest.
    The agent syncs the sources and ranks the corpus. It judges the top
    candidates against your profile, reads the official documents of the
    best ones, and opens a results page in your browser.
-4. On the page, mark each call *pursue / maybe / dismiss*, then press
-   **Export decisions**. Next time, tell the agent to import your
-   decisions: dismissed calls stay out of the way, and your marks guide
-   the next run.
+4. On the page, mark each call *pursue / maybe / dismiss* and add notes.
+   A short guided tour shows how on first open. Then send your marks
+   back to the agent:
+   - **Download file** if your agent runs on this computer. It finds the
+     file in Downloads by itself; just say *"import my decisions"*.
+   - **Copy for agent** if it runs in the cloud, in a web or mobile app,
+     or can't see your files. Paste the copied text into the chat.
+
+   Dismissed calls stay out of the way next time, and your notes guide
+   the agent when it suggests changes to your profile.
 
 You can keep as many profiles as you like, e.g. your firm plus each
 client you advise. They share one database.

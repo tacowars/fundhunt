@@ -10,7 +10,8 @@ to stderr), so an agent can drive it without parsing prose.
     fundhunt show <ref>                     one full record
     fundhunt doc <ref> [--max-chars N]      official documents as text (deep read)
     fundhunt verdict --profile P < verdicts.json
-    fundhunt decisions import --profile P [FILE ...]
+    fundhunt decisions import --profile P [FILE ...] [--stdin]
+    fundhunt decisions list --profile P     the user's marks and notes
     fundhunt report --profile P [--open]
     fundhunt run --profile P                sync + rank + candidates, in one go
 """
@@ -138,9 +139,35 @@ def cmd_verdict(a) -> int:
 
 def cmd_decisions(a) -> int:
     prof = _profile(a.profile)
-    files = pipeline.decision_files(prof, [Path(f) for f in a.files])
-    emit(pipeline.import_decisions(Store(), prof, files))
-    return 0
+    if a.action == "list":
+        rows = Store().conn.execute(
+            """SELECT d.source || ':' || d.source_id AS ref, d.decision, d.note, d.decided_at,
+                      o.title, o.funder, o.kind, v.verdict, v.route
+               FROM decisions d
+               LEFT JOIN opportunities o ON o.source=d.source AND o.source_id=d.source_id
+               LEFT JOIN verdicts v ON v.profile=d.profile AND v.source=d.source
+                                   AND v.source_id=d.source_id
+               WHERE d.profile=? ORDER BY d.decided_at DESC""", (prof.name,)).fetchall()
+        emit([dict(r) for r in rows])
+        return 0
+    payloads, sources, errors = [], [], []
+    if a.stdin:
+        try:
+            payloads += pipeline.parse_decisions(sys.stdin.read())
+            sources.append("<stdin>")
+        except (ValueError, json.JSONDecodeError) as exc:
+            return fail(f"could not read pasted decisions: {exc}")
+    files = [] if a.stdin and not a.files else pipeline.decision_files(
+        prof, [Path(f) for f in a.files])
+    for f in files:
+        try:
+            payloads += pipeline.parse_decisions(f.read_text(encoding="utf-8"))
+            sources.append(str(f))
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            errors.append({"file": str(f), "error": str(exc)[:200]})
+    res = pipeline.import_decisions(Store(), prof, payloads, sources)
+    emit({**res, "errors": errors})
+    return 0 if not errors else 4
 
 
 def cmd_report(a) -> int:
@@ -213,9 +240,11 @@ def main(argv: list[str] | None = None) -> int:
     p.set_defaults(fn=cmd_verdict)
 
     p = sub.add_parser("decisions")
-    p.add_argument("action", choices=["import"])
+    p.add_argument("action", choices=["import", "list"])
     p.add_argument("--profile", required=True)
-    p.add_argument("files", nargs="*")
+    p.add_argument("files", nargs="*", help="exported files (default: search data/inbox and ~/Downloads)")
+    p.add_argument("--stdin", action="store_true",
+                   help="read a FUNDHUNT-DECISIONS block the user pasted into chat")
     p.set_defaults(fn=cmd_decisions)
 
     a = ap.parse_args(argv)

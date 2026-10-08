@@ -105,9 +105,10 @@ def test_decisions_import_and_dismissed_drop_out(store, sme, tmp_path):
     f.write_text(json.dumps({"profile": "example-sme", "decisions": [
         {"ref": "bdns:100", "decision": "dismiss", "note": "ya presentado",
          "decided_at": "2026-10-08T10:00:00Z"}]}))
-    res = pipeline.import_decisions(store, sme, [f])
+    payloads = pipeline.parse_decisions(f.read_text())
+    res = pipeline.import_decisions(store, sme, payloads)
     assert res["applied"] == 1 and res["totals"] == {"dismiss": 1}
-    assert pipeline.import_decisions(store, sme, [f])["applied"] == 0  # idempotent
+    assert pipeline.import_decisions(store, sme, payloads)["applied"] == 0  # idempotent
     assert "bdns:100" not in [c["ref"] for c in pipeline.candidates(store, sme)["candidates"]]
 
 
@@ -139,3 +140,18 @@ def test_report_sizing_does_not_stale_verdicts(sme):
     assert wider.hash() == sme.hash()
     other = sme.model_copy(update={"not_interested_in": "otra cosa"})
     assert other.hash() != sme.hash()
+
+
+def test_pasted_block_survives_chat_wrapping(store, sme):
+    rank.run(store, sme)
+    pasted = (
+        "here are my marks!\n```\nFUNDHUNT-DECISIONS example-sme 2 marks\n"
+        '{"profile":"example-sme","decisions":['
+        '{"ref":"placsp:P-1","decision":"pursue","note":"llamar","decided_at":"2026-10-08T11:00:00Z"},'
+        '{"ref":"bdns:100","decision":null,"note":"revisar bases","decided_at":"2026-10-08T11:01:00Z"}]}'
+        "\n```\nthanks"
+    )
+    res = pipeline.import_decisions(store, sme, pipeline.parse_decisions(pasted))
+    assert res["applied"] == 2 and res["totals"] == {"pursue": 1, "note": 1}
+    with pytest.raises(ValueError):
+        pipeline.parse_decisions("no block here")
