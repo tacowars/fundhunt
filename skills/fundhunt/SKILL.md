@@ -97,10 +97,18 @@ advise. All of them share one database.
      earlier report, ask once whether they marked anything. If they did,
      explain both ways of sending marks back (step 9).
 2. **Sync.** Run `uv run fundhunt sync`.
-   - The first sync takes about 30 minutes. Tell the user before it
-     starts and let it run. BDNS reports `coverage: partial` for its
-     first 2–3 syncs while its backlog drains; that is expected.
-   - Later syncs only fetch what changed: a few minutes.
+   - It first downloads the shared nightly snapshot (a few megabytes,
+     seconds), which fundhunt's public job rebuilds from every source each
+     night. Sources the snapshot covers are reported as `skipped:
+     covered by the nightly snapshot`. That is the normal case: no
+     source is crawled and the sync takes under a minute.
+   - A source the snapshot doesn't cover is fetched directly: the
+     snapshot is more than about a day old, its last nightly run failed,
+     or (TED only) the profile wants countries the snapshot lacks.
+   - If `snapshot.status` is `unavailable`, every source is fetched
+     directly. A first direct sync takes about 30 minutes, so tell the
+     user before it starts and let it run. BDNS then reports
+     `coverage: partial` for 2–3 syncs while its backlog drains.
    - Exit code 3 means at least one source failed. Report which one and
      carry on: the others are fine, and a failed source simply retries on
      the next sync.
@@ -179,8 +187,10 @@ re-judges the top candidates. Say so.
 
 ## D. Schedule
 
-Only `sync` may run unattended. Judging needs you. Offer the user's
-platform scheduler, running from the repo root:
+Only `sync` may run unattended. Judging needs you. Since `sync` pulls the
+nightly snapshot, a schedule mostly saves the user a minute at the start
+of a run; most users don't need one. If they still want it, offer the
+user's platform scheduler, running from the repo root:
 - macOS / Linux: cron
   `30 6 * * * cd <repo> && uv run fundhunt sync >> data/sync.log 2>&1`,
   or a launchd agent.

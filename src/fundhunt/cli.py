@@ -4,7 +4,9 @@ to stderr), so an agent can drive it without parsing prose.
     fundhunt status                         database, sources, profiles
     fundhunt sources                        what each source covers
     fundhunt profile list | check <name>    validate profiles
-    fundhunt sync [--source S ...] [--force]
+    fundhunt sync [--source S ...] [--direct] [--force]
+                                            nightly snapshot first, then the gaps
+    fundhunt snapshot pull [--from URL] [--force] | build [--out DIR]
     fundhunt rank --profile P
     fundhunt candidates --profile P [--top N] [--all]
     fundhunt show <ref>                     one full record
@@ -23,7 +25,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import __version__, documents, pipeline, rank, report
+from . import __version__, documents, pipeline, rank, report, snapshot
 from . import profile as profile_mod
 from .settings import db_path
 from .sources import DESCRIPTIONS, SOURCES
@@ -62,7 +64,9 @@ def cmd_status(a) -> int:
     for s in SOURCES:
         ok = st.last_success(s)
         last[s] = ok.isoformat() if ok else None
+    snap = snapshot.applied(st)
     emit({"version": __version__, "database": str(db_path()), "corpus": st.stats(),
+          "snapshot": {"built_at": snap["built_at"]} if snap else None,
           "last_complete_sync": last, "recent_runs": st.runs(10), "profiles": profiles})
     return 0
 
@@ -92,9 +96,21 @@ def cmd_sync(a) -> int:
     bad = [s for s in a.source or [] if s not in SOURCES]
     if bad:
         return fail(f"unknown source(s) {bad}; choose from {SOURCES}")
-    res = pipeline.sync(Store(), a.source, force=a.force)
+    res = pipeline.sync(Store(), a.source, force=a.force, direct=a.direct)
     emit(res)
     return 0 if all(r.get("ok") for r in res.values()) else 3
+
+
+def cmd_snapshot(a) -> int:
+    st = Store()
+    if a.action == "build":
+        emit(snapshot.build(st, Path(a.out)))
+        return 0
+    try:
+        emit(snapshot.pull(st, a.source_url, force=a.force))
+    except Exception as exc:
+        return fail(f"snapshot pull failed: {type(exc).__name__}: {exc}")
+    return 0
 
 
 def cmd_rank(a) -> int:
@@ -203,7 +219,16 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("sync")
     p.add_argument("--source", action="append", help="limit to a source (repeatable)")
     p.add_argument("--force", action="store_true", help="poll weekly sources anyway")
+    p.add_argument("--direct", action="store_true",
+                   help="skip the nightly snapshot and fetch every source directly")
     p.set_defaults(fn=cmd_sync)
+
+    p = sub.add_parser("snapshot")
+    p.add_argument("action", choices=["pull", "build"])
+    p.add_argument("--from", dest="source_url", help="snapshot URL or directory (pull)")
+    p.add_argument("--force", action="store_true", help="re-apply even if not newer (pull)")
+    p.add_argument("--out", default="dist", help="output directory (build)")
+    p.set_defaults(fn=cmd_snapshot)
 
     for name, fn in (("rank", cmd_rank), ("report", cmd_report)):
         p = sub.add_parser(name)

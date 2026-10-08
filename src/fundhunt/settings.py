@@ -3,6 +3,8 @@
 - FUNDHUNT_HOME      base directory (default: the repository root)
 - FUNDHUNT_DB        SQLite database (default: <home>/data/fundhunt.db)
 - FUNDHUNT_PROFILES  profile directory (default: <home>/profiles)
+- FUNDHUNT_SNAPSHOT  where the nightly corpus snapshot is published (a URL
+                     or a local directory); "off" disables it
 """
 
 from __future__ import annotations
@@ -11,6 +13,7 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+SNAPSHOT_URL = "https://github.com/tacowars/fundhunt/releases/download/snapshot"
 
 
 def _path(env: str, default: Path) -> Path:
@@ -45,3 +48,8 @@ def inbox_dir() -> Path:
 
 def profiles_dir() -> Path:
     return _path("FUNDHUNT_PROFILES", home() / "profiles")
+
+
+def snapshot_url() -> str | None:
+    v = os.environ.get("FUNDHUNT_SNAPSHOT", SNAPSHOT_URL)
+    return None if v.strip().lower() in ("", "off", "none") else v
