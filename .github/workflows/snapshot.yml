@@ -7,8 +7,6 @@ on:
   schedule:
     - cron: "17 3 * * *"   # early morning in Spain, after the registries' overnight batches
   workflow_dispatch:
-  push:
-    branches: [nightly-snapshot]   # trial runs before merge; remove when merging
 
 permissions:
   contents: write   # create the release and replace its assets
